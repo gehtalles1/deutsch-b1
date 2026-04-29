@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>刘老师德语课 - B1 高分地图</title>
+    
+    <script>
+        // 权限检查：必须通过 B1 专属激活码进入
+        if (localStorage.getItem('map_access_b1') !== "Erfolg2026") {
+            window.location.href = "index.html";
+        }
+    </script>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&family=Inter:wght@400;800&display=swap');
+        
+        body { background-color: #F8FAFC; font-family: 'Noto Sans SC', sans-serif; color: #1E293B; overflow-x: hidden; }
+
+        /* 全平台水印 */
+        #watermark-layer {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; 
+            opacity: 0.08; 
+        }
+
+        .wm-text {
+            font-size: 24px; 
+            font-weight: 900;
+            color: #000;
+            transform: rotate(-25deg);
+            white-space: nowrap; 
+            letter-spacing: 4px;
+        }
+
+        /* B1 卡片基础样式 - 强化边框质感 */
+        .b1-card {
+            background: #FFFFFF; 
+            border: 2px solid #E2E8F0; 
+            border-bottom: 6px solid #CBD5E1; 
+            border-radius: 24px; 
+            transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1); 
+            cursor: pointer;
+            position: relative;
+        }
+
+        .b1-card:active { 
+            transform: translateY(4px); 
+            border-bottom-width: 2px; 
+        }
+
+        @media (max-width: 480px) { .wm-text { transform: rotate(-25deg) scale(0.8); } }
+    </style>
+</head>
+<body class="py-10 px-4">
+    <div id="watermark-layer">
+        <div class="wm-text">正版授权：GEHTALLES 刘老师德语 B1</div>
+    </div>
+
+    <div class="app-container max-w-[480px] mx-auto relative z-10">
+        <header class="text-center mb-10">
+            <h1 class="text-3xl font-black mb-2 text-slate-900">德语 B1 高分挑战</h1>
+            <p class="text-[10px] text-blue-500 font-bold tracking-[0.2em] uppercase">Level B1 • Mittelstufe Deutsch</p>
+            <div class="w-16 h-1 bg-blue-600 rounded-full mx-auto mt-4"></div>
+        </header>
+
+        <main id="level-list" class="grid grid-cols-2 gap-x-5 gap-y-6">
+            </main>
+
+        <footer class="mt-16 text-center pb-10">
+            <div class="inline-block px-5 py-1 border border-slate-200 rounded-full text-[10px] text-slate-400 font-bold uppercase tracking-widest">
+                GEHTALLES 工作室 | B1 冲刺系列
+            </div>
+        </footer>
+    </div>
+
+<script>
+    // B1 专属配色方案：更有挑战感的深色系
+    const flatColors = [
+        "#1E40AF", // 1 深蓝
+        "#059669", // 2 翠绿
+        "#7C3AED", // 3 紫色
+        "#DB2777", // 4 玫红
+        "#2563EB", // 5 宝蓝
+        "#0891B2", // 6 深青
+        "#EA580C", // 7 橙色
+        "#4F46E5", // 8 靛蓝
+        "#DC2626", // 9 红色
+        "#111827", // 10 碳黑
+        "#6366F1", // 11 丁香紫
+        "#0D9488", // 12 松石绿
+    ];
+
+    // B1 核心教学大纲
+    const levels = [
+        { id: 1, title: "虚拟二式初探", desc: "KONJUNKTIV II", file: "b1-01-k2" },
+        { id: 2, title: "被动语态攻坚", desc: "PASSIV PRÄSENS", file: "b1-02-passiv" },
+        { id: 3, title: "过去完成时", desc: "PLUSQUAMPERFEKT", file: "b1-03-pq" },
+        { id: 4, title: "关系从句进阶", desc: "RELATIVSÄTZE", file: "b1-04-relativ" },
+        { id: 5, title: "动词与介词搭配", desc: "VERBEN MIT PRÄP.", file: "b1-05-prepos" },
+        { id: 6, title: "从句连词大合集", desc: "KONJUNKTIONEN", file: "b1-06-conjunction" },
+        { id: 7, title: "分词作定语", desc: "PARTIZIPIALATTRIBUT", file: "b1-07-partizip" },
+        { id: 8, title: "实战：媒体与科技", desc: "MEDIEN & TECHNIK", file: "b1-08-medien" },
+        { id: 9, title: "实战：环境与未来", desc: "UMWELT & ZUKUNFT", file: "b1-09-umwelt" },
+        { id: 10, title: "实战：职场申请", desc: "BEWERBUNG & JOB", file: "b1-10-job" },
+        { id: 11, title: "模拟检测：听力", desc: "HÖRVERSTEHEN", file: "b1-11-hoeren" },
+        { id: 12, title: "模拟检测：阅读", desc: "LESEVERSTEHEN", file: "b1-12-lesen" }
+    ];
+
+    const container = document.getElementById('level-list');
+
+    levels.forEach((level, index) => {
+        const color = flatColors[index % flatColors.length];
+        const card = document.createElement('div');
+        card.className = 'b1-card p-5 flex flex-col items-center text-center';
+        card.onclick = () => go(level.file);
+
+        card.innerHTML = `
+            <div class="w-14 h-14 rounded-2xl flex items-center justify-center text-white font-black text-2xl mb-4 shadow-lg shadow-slate-200" 
+                 style="background-color: ${color};">
+                ${level.id}
+            </div>
+            <h3 class="text-[13px] font-black text-slate-800 leading-tight">${level.title}</h3>
+            <p class="text-[8px] text-slate-400 mt-1.5 uppercase font-bold tracking-tighter">${level.desc}</p>
+        `;
+        container.appendChild(card);
+    });
+
+    function go(name) { 
+        window.location.href = name + ".html"; 
+    }
+    
+    // 防范：禁用右键
+    document.oncontextmenu = () => false;
+</script>
+</body>
+</html>
