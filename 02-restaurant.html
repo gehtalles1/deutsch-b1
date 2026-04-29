@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Die Restaurants von morgen</title>
+    <style>
+        :root {
+            --primary-orange: #ea580c; /* 活力橙 */
+            --text-main: #1e293b;
+            --text-light: #64748b;
+            --border-gray: #e2e8f0;
+            --correct: #166534;
+            --wrong: #991b1b;
+            --accent-bg: #fff7ed; /* 浅橙底色 */
+            --goethe-gold: #c19c5b;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f8fafc;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+        }
+
+        header {
+            border-bottom: 3px solid var(--primary-orange);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            color: var(--primary-orange);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #fed7aa;
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--primary-orange);
+            border-left: 5px solid var(--primary-orange);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--primary-orange); }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid var(--border-gray); background: #fff;
+            text-align: left; cursor: pointer; border-radius: 6px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--primary-orange); background: var(--accent-bg); }
+        .option.correct { background: #dcfce7; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fee2e2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 0.95rem; color: #334155; white-space: pre-line; margin-bottom: 20px; text-align: justify; }
+
+        .analysis-section { background: var(--accent-bg); padding: 18px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #fed7aa; }
+        .analysis-title { font-weight: bold; color: var(--primary-orange); display: block; margin-bottom: 8px; border-bottom: 1px solid #fed7aa; padding-bottom: 5px; }
+        .analysis-content { font-size: 0.9rem; color: #4a5568; }
+        .grammar-point { color: var(--primary-orange); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--primary-orange); color: #fff; border: none;
+            padding: 14px; border-radius: 8px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #64748b; }
+        .nav-btn:active { transform: scale(0.97); }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Die Restaurants von morgen</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <audio controls controlsList="nodownload">
+            <source src="restaurant.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Hörverständnis (1-6)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Warum wird Fleischersatz immer beliebter?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. Weil es billiger als Fleisch ist.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. Aus Klima- und Tierschutzgründen.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Was ist "In-Vitro-Fleisch"?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Fleisch, das im Labor gezüchtet wird.</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Besonders gesundes Bio-Fleisch.</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Roboter in der Küche können ...</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. neue Rezepte erfinden.</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. immer die gleiche Qualität liefern.</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Der Einsatz von Robotern spart vor allem ...</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Stromkosten.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Personalkosten.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. In Zukunft könnten Insekten eine wichtige Proteinquelle sein.</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Richtig</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Falsch</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Viele Gäste finden Roboter unhöflich.</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Richtig</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Falsch</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            Wie sieht der Restaurantbesuch der Zukunft aus? Vieles spricht dafür, dass sich unsere Ernährung und der Service stark verändern werden. Fleischersatzprodukte aus Pflanzen sind bereits Trend. Viele Menschen verzichten aus Klima- und Tierschutzgründen auf echtes Fleisch. 
+
+            In Laboren wird zudem an In-Vitro-Fleisch gearbeitet. Dafür muss kein Tier sterben, da es aus Zellen gezüchtet wird. Auch Insekten könnten bald ganz normal auf der Speisekarte stehen, da sie sehr gesund und nachhaltig sind.
+
+            Aber nicht nur das Essen ändert sich, sondern auch der Service. In ersten Restaurants weltweit übernehmen Roboter Aufgaben. Sie bringen das Essen an den Tisch oder helfen in der Küche. Ein großer Vorteil: Roboter werden nicht müde und liefern eine konstante Qualität. Zudem helfen sie den Gastronomen, Personalkosten zu sparen. 
+
+            Die Digitalisierung macht auch vor der Bestellung nicht halt. Per Tablet oder Smartphone bestellen die Gäste direkt – das verkürzt die Wartezeit. Trotzdem bleibt die menschliche Gastfreundschaft wichtig, denn ein Roboter kann ein echtes Lächeln nicht ersetzen.
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🍴 餐饮进阶词汇</span>
+            <div class="analysis-content">
+                • <b>der Fleischersatz</b>: 肉类替代品。B1考试常客。<br>
+                • <b>nachhaltig</b>: 可持续的。德语金词，看到必背。<br>
+                • <b>verzichten auf (+Akk)</b>: 放弃...。注意介词搭配。<br>
+                • <b>die Gastronomie</b>: 餐饮业。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 语法重点：被动语态倾向</span>
+            <div class="analysis-content">
+                <span class="grammar-point">被动语态与替代</span><br>
+                原文出现："...wird an In-Vitro-Fleisch <b>gearbeitet</b>."<br>
+                <b>刘老师提醒：</b>这是典型的无人称被动语态，强调“动作正在进行中”，而不强调“谁”在工作。B1阶段要习惯这种表达。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 刘老师的备考建议</span>
+            <div class="analysis-content">
+                餐饮话题在 B1 考试中通常会和“科技”或“环保”结合。比如这篇提到的 **Insekten（昆虫）** 和 **Laborfleisch（实验室肉）**。大家在口语部分如果抽到“未来的生活”，这些都是非常加分的素材！
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'B', q2:'A', q3:'B', q4:'B', q5:'A', q6:'B'
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId]) || (sol[qId]==='A' && b.innerText==='A. Richtig') || (sol[qId]==='B' && b.innerText==='B. Falsch')) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+</body>
+</html>
