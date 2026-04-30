@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Der Liebesbaum</title>
+    <style>
+        :root {
+            --love-red: #9b1c31; /* 浪漫深红 */
+            --text-main: #2c3e50;
+            --text-light: #64748b;
+            --border-gray: #e2e8f0;
+            --correct: #166534;
+            --wrong: #991b1b;
+            --accent-bg: #fff5f5;
+            --gold-leaf: #b8860b;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #fce4ec; /* 浅粉色背景 */
+            /* 背景图：使用自然森林/树木纹理 */
+            background-image: linear-gradient(rgba(252, 228, 236, 0.9), rgba(252, 228, 236, 0.9)), 
+                              url('https://images.unsplash.com/photo-1542273917363-3b1817f69a2d?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.95); /* 半透明白色，确保文字清晰 */
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(155, 28, 49, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        header {
+            border-bottom: 3px solid var(--love-red);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.4rem;
+            color: var(--love-red);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #ffccd5;
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--love-red);
+            border-left: 5px solid var(--love-red);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--love-red); }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid var(--border-gray); background: #fff;
+            text-align: left; cursor: pointer; border-radius: 6px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--love-red); background: var(--accent-bg); }
+        .option.correct { background: #dcfce7; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fee2e2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 1rem; color: #334155; white-space: pre-line; margin-bottom: 20px; text-align: justify; font-family: 'Georgia', serif; }
+
+        .analysis-section { background: #fffaf0; padding: 18px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #faebd7; }
+        .analysis-title { font-weight: bold; color: var(--love-red); display: block; margin-bottom: 8px; border-bottom: 1px solid #ebd8c0; padding-bottom: 5px; }
+        .analysis-content { font-size: 0.9rem; color: #4a5568; }
+        .grammar-point { color: var(--gold-leaf); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--love-red); color: #fff; border: none;
+            padding: 14px; border-radius: 8px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #8e7377; }
+        .nav-btn:active { transform: scale(0.97); }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Der Liebesbaum</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <!-- 请确保音频文件名正确 -->
+        <audio controls controlsList="nodownload">
+            <source src="liebesbaum.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Übungen (1-10)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Wo befindet sich der Liebesbaum?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. In Bayern</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. In Schleswig-Holstein</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Was ist der Liebesbaum eigentlich für ein Baum?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Eine Eiche</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Eine Buche</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Seit wann hat der Baum eine eigene Postadresse?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Seit 1891</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Seit 1927</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Wo legt der Postbote die Briefe hinein?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. In ein großes Astloch</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. In einen Briefkasten am Stamm</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Darf jeder die Briefe im Baum lesen?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Ja, jeder der will</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Nein, nur der Empfänger</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Wie viele Briefe kommen im Durchschnitt pro Tag an?</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Über hundert</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Vier bis fünf</button>
+        </div>
+
+        <div class="question-box" id="q7">
+            <span class="question-text">7. Wie viele Ehen hat der Baum angeblich schon gestiftet?</span>
+            <button class="option" onclick="check(this, 'A', 'q7')">A. Mehr als 100</button>
+            <button class="option" onclick="check(this, 'B', 'q7')">B. Genau 1927</button>
+        </div>
+
+        <div class="question-box" id="q8">
+            <span class="question-text">8. Warum schrieben sich das Paar 1891 heimlich Briefe?</span>
+            <button class="option" onclick="check(this, 'A', 'q8')">A. Weil sie keine Handys hatten</button>
+            <button class="option" onclick="check(this, 'B', 'q8')">B. Weil die Eltern gegen die Beziehung waren</button>
+        </div>
+
+        <div class="question-box" id="q9">
+            <span class="question-text">9. Die Briefe kommen nur aus Deutschland.</span>
+            <button class="option" onclick="check(this, 'A', 'q9')">A. Richtig</button>
+            <button class="option" onclick="check(this, 'B', 'q9')">B. Falsch</button>
+        </div>
+
+        <div class="question-box" id="q10">
+            <span class="question-text">10. Das Paar von 1891 hat schließlich unter der Eiche geheiratet.</span>
+            <button class="option" onclick="check(this, 'A', 'q10')">A. Richtig</button>
+            <button class="option" onclick="check(this, 'B', 'q10')">B. Falsch</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            Sind Sie auf Partnersuche? Da helfen Dating-Apps oder ein Brief an den Liebesbaum: „Bräutigamseiche, Dodauer Forst, 23701 Eutin". Ja, Sie haben richtig gehört, die über 500 Jahre alte Eiche in Schleswig-Holstein hat eine eigene Postadresse. Schon seit 1927!
+
+            Der Postbote bringt jeden Brief zur Eiche. Er steigt auf eine Leiter und steckt alle Briefe in ein großes Astloch. Und dann kann jeder, der will, die Briefe öffnen und lesen. Ist ein Brief besonders interessant, dann darf man ihn mitnehmen.
+
+            Die Briefe kommen aus der ganzen Welt, in der Regel sind es vier bis fünf pro Tag. Keiner der Briefe liegt hier angeblich länger als drei Tage. Man behauptet, dass der Liebesbaum bereits für mehr als 100 Ehen verantwortlich ist.
+
+            Natürlich hat der Liebesbaum eine romantische Vergangenheit: Die Tochter eines Försters verliebte sich in den Sohn eines Schokoladefabrikanten. Die Eltern der Tochter waren dagegen. Aber das Liebespaar schrieb sich trotzdem Liebesbriefe und versteckte sie in der Eiche. 1891 gaben die Eltern nach und die Hochzeit fand unter der Eiche statt!
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🌟 核心词汇精讲</span>
+            <div class="analysis-content">
+                这篇文章非常温馨，讲述了真实的“树洞信箱”：<br>
+                • <b>die Partnersuche</b>: 寻找伴侣。-suche 是后缀，表示“寻找”。<br>
+                • <b>die Eiche</b>: 橡树。德国文化中象征坚定和长久。<br>
+                • <b>das Astloch</b>: 树洞（树枝留下的孔）。<br>
+                • <b>verantwortlich für</b>: 对...负责/是...的原因。常考介词搭配。<br>
+                • <b>nachgeben</b>: 让步、妥协。文中指父母最终同意了婚事。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 语法重点：介词与从句</span>
+            <div class="analysis-content">
+                <span class="grammar-point">1. 介词 an + Akkusativ</span><br>
+                "ein Brief <b>an den</b> Liebesbaum"：给某人写信，an后面接第四格。<br><br>
+                <span class="grammar-point">2. Relativsatz (关系从句)</span><br>
+                "...jeder, <b>der</b> will, ..."：每一个想看的人。der引导关系从句修饰jeder。<br><br>
+                <span class="grammar-point">3. Trotzdem (尽管如此)</span><br>
+                "schrieb sich <b>trotzdem</b> Liebesbriefe"：父母反对，但他们“尽管如此”还是写信。这是典型的转折副词，占位并引起反转。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 文化小常识</span>
+            <div class="analysis-content">
+                这棵“新郎橡树”（Bräutigamseiche）位于德国北部。它是世界上唯一一棵拥有自己邮政编码和邮寄地址的树！直到今天，邮递员每天依然会准时把信塞进 3 米高的树洞里。如果你想找德国对象，真的可以试着写一封信寄过去喔！
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'B', q2:'A', q3:'B', q4:'A', q5:'A', 
+        q6:'B', q7:'A', q8:'B', q9:'B', q10:'A' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId]) || (sol[qId]==='A' && b.innerText==='A. Richtig') || (sol[qId]==='B' && b.innerText==='B. Falsch')) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
