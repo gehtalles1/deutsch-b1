@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Die Teilzeit-Debatte</title>
+    <style>
+        :root {
+            --office-blue: #1e3a8a; /* 商务深蓝 */
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --border-gray: #e5e7eb;
+            --correct: #15803d;
+            --wrong: #b91c1c;
+            --accent-bg: #f0f4f8;
+            --highlight-green: #0d9488;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f3f4f6;
+            /* 背景图：职场/会议室氛围 */
+            background-image: linear-gradient(rgba(243, 244, 246, 0.92), rgba(243, 244, 246, 0.92)), 
+                              url('https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        header {
+            border-bottom: 3px solid var(--office-blue);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: var(--office-blue);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-gray);
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--office-blue);
+            border-left: 5px solid var(--office-blue);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--office-blue); }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid var(--border-gray); background: #fff;
+            text-align: left; cursor: pointer; border-radius: 6px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--office-blue); background: var(--accent-bg); }
+        .option.correct { background: #dcfce7; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fee2e2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 0.95rem; color: #374151; white-space: pre-line; margin-bottom: 20px; text-align: justify; }
+
+        .analysis-section { background: #f8fafc; padding: 18px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .analysis-title { font-weight: bold; color: var(--office-blue); display: block; margin-bottom: 8px; border-bottom: 1px solid var(--border-gray); padding-bottom: 5px; }
+        .analysis-content { font-size: 0.85rem; color: #4b5563; }
+        .grammar-point { color: var(--highlight-green); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--office-blue); color: #fff; border: none;
+            padding: 14px; border-radius: 8px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #64748b; }
+        .nav-btn:active { transform: scale(0.97); }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Die Teilzeit-Debatte</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <audio controls controlsList="nodownload">
+            <source src="teilzeit.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Verständnisfragen (1-6)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Was ist das Ziel des Antrags der CDU?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. Mehr Menschen sollen in Vollzeit arbeiten.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. Alle Menschen sollen nur noch 30 Stunden arbeiten.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Wie lautet der Titel des CDU-Antrags?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Freiheit für Teilzeit-Jobs</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Kein Rechtsanspruch auf Lifestyle-Teilzeit</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Welches Wort hat die Diskussion im Land besonders vergrößert?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Systemfehler</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Lifestyle-Teilzeit</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Was könnten die Leute beim Wort "Lifestyle" assoziieren?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Dass Teilzeit-Arbeiter faul sind.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Dass Vollzeit-Arbeit gesund ist.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Wie empfinden viele Menschen die Haltung der Politik?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Sie fühlen sich gut unterstützt.</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Sie fühlen sich nicht verstanden.</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Laut Text ist der Grund für Teilzeit nur Bequemlichkeit.</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Richtig</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Falsch</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            Eigentlich dürfen Angestellte aus vielen Gründen auch weniger als 40 Stunden pro Woche arbeiten. Die Regierungspartei CDU möchte diese Option stark reduzieren. Es sollen mehr Menschen in Vollzeit arbeiten und weniger in Teilzeit. Dafür hat sie einen Antrag geschrieben. Der Titel war: „Kein Rechtsanspruch auf Lifestyle-Teilzeit“.
+
+            Aktuell streiten die Leute im Land schon intensiv darüber, wer wie viel arbeiten kann, muss oder soll. Das Wort „Lifestyle-Teilzeit“ hat diese Kontroverse noch größer gemacht.
+
+            Viele Menschen fühlen sich von der Politik und vom Bundeskanzler nicht verstanden. Beim Wort „Lifestyle“ könnte man glauben: Leute arbeiten Teilzeit, weil sie faul sind. Es ist aber viel komplexer – und zeigt Fehler im System.
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🌟 核心词汇精讲</span>
+            <div class="analysis-content">
+                这篇文章涉及德国当下的政治热点，职场词汇非常关键：<br>
+                • <b>die Teilzeit / die Vollzeit</b>: 兼职/全职。德国标准全职通常为每周 40 小时。<br>
+                • <b>der Rechtsanspruch</b>: 法律权利。这是一个合成词：Recht (法律) + Anspruch (权利)。<br>
+                • <b>die Kontroverse</b>: 争论、争议。<br>
+                • <b>faul</b>: 懒惰的。文中提到这是一个误解。<br>
+                • <b>komplex</b>: 复杂的。描述社会问题时的常用词。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 语法重点：情态动词与被动表达</span>
+            <div class="analysis-content">
+                <span class="grammar-point">1. Modalverben (können, müssen, sollen)</span><br>
+                原文："wer wie viel arbeiten kann, muss oder soll." 这一组情态动词的连用，生动刻画了人们对于工作强度的纠结和无奈。<br><br>
+                <span class="grammar-point">2. Passiv-Ersatz (sich fühlen)</span><br>
+                "Menschen <b>fühlen sich ... nicht verstanden</b>."：人们感到不被理解。这是一种常见的表达感受的结构。<br><br>
+                <span class="grammar-point">3. Konjunktiv II (könnte)</span><br>
+                "man <b>könnte</b> glauben"：人们可能会认为。这里使用第二虚拟式表示一种推测和非事实的假设。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 备考小贴士</span>
+            <div class="analysis-content">
+                在 B1 考试的口语部分，经常会遇到关于 **"Arbeitswelt" (职场世界)** 的讨论。这篇文章提到的 "Lifestyle-Teilzeit" 是一个很好的切入点。大家可以思考：为什么年轻人更愿意选择兼职？是为了享受生活（Lifestyle），还是因为生活压力大、需要照顾家庭（Systemfehler）？
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'A', q2:'B', q3:'B', q4:'A', q5:'B', q6:'B' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId]) || (sol[qId]==='A' && b.innerText==='A. Richtig') || (sol[qId]==='B' && b.innerText==='B. Falsch')) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
