@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Der Geburtstag</title>
+    <style>
+        :root {
+            --party-gold: #d97706; /* 暖阳橘/香槟金 */
+            --dark-brown: #451a03;
+            --text-main: #1f2937;
+            --border-gray: #e5e7eb;
+            --correct: #15803d;
+            --wrong: #b91c1c;
+            --accent-bg: #fff7ed;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f3f4f6;
+            /* 背景图：温馨生日派对氛围 */
+            background-image: linear-gradient(rgba(243, 244, 246, 0.92), rgba(243, 244, 246, 0.92)), 
+                            url('https://images.unsplash.com/photo-1530103043960-ef38714abb15?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        header {
+            border-bottom: 3px solid var(--party-gold);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: var(--dark-brown);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #ffedd5;
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--dark-brown);
+            border-left: 5px solid var(--party-gold);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--dark-brown); }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid var(--border-gray); background: #fff;
+            text-align: left; cursor: pointer; border-radius: 6px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--party-gold); background: var(--accent-bg); }
+        .option.correct { background: #dcfce7; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fee2e2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 0.95rem; color: #374151; white-space: pre-line; margin-bottom: 20px; text-align: justify; }
+
+        .analysis-section { background: #fffaf5; padding: 18px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #ffedd5; }
+        .analysis-title { font-weight: bold; color: var(--dark-brown); display: block; margin-bottom: 8px; border-bottom: 1px solid var(--border-gray); padding-bottom: 5px; }
+        .analysis-content { font-size: 0.85rem; color: #4b5563; }
+        .grammar-point { color: var(--party-gold); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--party-gold); color: #fff; border: none;
+            padding: 14px; border-radius: 8px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #94a3b8; }
+        .nav-btn:active { transform: scale(0.97); }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Der Geburtstag meiner Cousine</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <!-- 核心：已关联仓库中的 geburtstag.mp3 -->
+        <audio controls controlsList="nodownload">
+            <source src="geburtstag.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Verständnisfragen (1-8)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Welchen Geburtstag feierte Katrin?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. Den dreißigsten.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. Den dreizehnten.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Warum war der Erzähler schon früher da?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Um Kuchen zu essen.</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Um bei den Vorbereitungen zu helfen.</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Was sagte jeder Gast zu Katrin?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Dass sie sehr jung aussieht.</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Dass die Wohnung sehr groß ist.</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Wer hat den Kuchen und die Torten gebacken?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Der Erzähler.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Katrin selbst.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Warum wurde es ein bisschen eng in der Wohnung?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Weil viele Freunde und Familie gekommen waren.</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Weil die Wohnung renoviert wurde.</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Was gab es typischerweise zum Abendessen?</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Pizza und Pasta.</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Kartoffelsalat und Würstchen.</button>
+        </div>
+
+        <div class="question-box" id="q7">
+            <span class="question-text">7. Wer waren die „Übeltäter“ im Flur?</span>
+            <button class="option" onclick="check(this, 'A', 'q7')">A. Die Katzen.</button>
+            <button class="option" onclick="check(this, 'B', 'q7')">B. Kleine Kinder.</button>
+        </div>
+
+        <div class="question-box" id="q8">
+            <span class="question-text">8. Was wollte eine Katze fressen?</span>
+            <button class="option" onclick="check(this, 'A', 'q8')">A. Ein Stück Seife.</button>
+            <button class="option" onclick="check(this, 'B', 'q8')">B. Ein Würstchen.</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            Gestern feierten wir den 30. Geburtstag meiner Cousine Katrin. Die meisten Gäste waren für 15 Uhr eingeladen, aber ich war schon früher da, um bei den Vorbereitungen zu helfen. Ich deckte den Tisch, stellte die Kerzen auf und schmückte die ganze Wohnung mit Luftballons. Und dann klingelte es auch schon an der Tür.
+
+            Katrin erhielt viele Glückwunschkarten, Blumensträuße und tolle Geschenke. Und jeder Gast versicherte ihr: „Du siehst so jung aus, dein Alter sieht man dir gar nicht an!“ Als alle Gäste da waren, setzten wir uns, um Katrins selbstgebackene Kuchen und Torten zu probieren. Da neben der Familie auch viele Freunde gekommen waren, wurde es ein bisschen eng in der Wohnung, aber jeder fand einen Platz.
+
+            Gegen 19 Uhr war es Zeit fürs Abendessen. Katrin und ich hatten in der Küche ein Buffet vorbereitet, an dem sich jeder bedienen konnte. Ganz typisch für Deutschland sind Kartoffelsalat und Würstchen, die durften natürlich auch auf unserem Buffet nicht fehlen.
+
+            Als ich mit meinem teller aus der Küche kam, wunderte ich mich, warum im Flur Geschenkband und zerrissenes Geschenkpapier lagen. Ich folgte der Spur und entdeckte die Übeltäter: Katrins Katzen hatten ein kleines Geschenk geöffnet. Und während eine Katze mit der Schleife spielte, wollte die andere gerade das Geschenk fressen – ein Stück Seife. Schnell nahm ich die Seife weg, die war allerdings schon ein wenig angefressen. Ich hoffe nur, dass keine Seifenblasen entstehen, wenn die Katze das nächste Mal Wasser trinkt!
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🌟 核心词汇精讲</span>
+            <div class="analysis-content">
+                这篇文章非常适合 B1 级别学习派对与居家描述：<br>
+                • <b>schmücken</b>: 装饰（Wohnung schmücken）<br>
+                • <b>versichern</b>: 向某人保证/确信地对某人说<br>
+                • <b>selbstgebacken</b>: 自己烘培的<br>
+                • <b>der Übeltäter</b>: 恶作剧者/罪魁祸首（文中指猫）<br>
+                • <b>angefressen</b>: 被啃过的/咬了一口的
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 语法重点：动词过去式 (Präteritum)</span>
+            <div class="analysis-content">
+                <span class="grammar-point">1. 叙述感十足的过去时</span><br>
+                文中大量使用 Präteritum (feierten, deckte, stellte, schmückte, erhielt)，这是德语书面叙述或正式讲故事的标准时态。<br><br>
+                <span class="grammar-point">2. 情态动词过去式 (durften/konnte)</span><br>
+                "Die durften nicht fehlen"（它们绝不能缺席）和 "bedienen konnte"（能够取用），注意在过去时态下的用法。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 德国文化点拨</span>
+            <div class="analysis-content">
+                提到 <b>Kartoffelsalat und Würstchen</b> (土豆沙拉配香肠)，这确实是德国聚餐、甚至圣诞夜非常典型的“国民级”简便晚餐。
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    // 正确答案 key
+    const sol = { 
+        q1:'A', q2:'B', q3:'A', q4:'B', q5:'A', q6:'B', q7:'A', q8:'A' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId])) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
