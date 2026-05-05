@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Fischbrötchen</title>
+    <style>
+        :root {
+            --ocean-blue: #0284c7; /* 海洋蓝 */
+            --sand-beige: #fef3c7; /* 沙滩米色 */
+            --dark-blue: #0c4a6e;
+            --text-main: #334155;
+            --border-gray: #e2e8f0;
+            --correct: #16a34a;
+            --wrong: #dc2626;
+            --accent-bg: #f0f9ff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f8fafc;
+            /* 背景图：北德海岸风情 */
+            background-image: linear-gradient(rgba(248, 250, 252, 0.94), rgba(248, 250, 252, 0.94)), 
+                            url('https://images.unsplash.com/photo-1505245208761-ba872912fac0?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(2, 132, 199, 0.1);
+        }
+
+        header {
+            border-bottom: 4px solid var(--ocean-blue);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            color: var(--dark-blue);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #bae6fd;
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: slideIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes slideIn { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--dark-blue);
+            border-left: 5px solid var(--ocean-blue);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 10px;
+            background: #fff;
+            transition: box-shadow 0.2s;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--dark-blue); font-size: 0.95rem; }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid var(--border-gray); background: #fcfcfc;
+            text-align: left; cursor: pointer; border-radius: 8px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--ocean-blue); background: var(--accent-bg); }
+        .option.correct { background: #f0fdf4; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fef2f2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 0.95rem; color: #334155; white-space: pre-line; margin-bottom: 20px; text-align: justify; }
+
+        .analysis-section { background: #f0f9ff; padding: 18px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #e0f2fe; }
+        .analysis-title { font-weight: bold; color: var(--dark-blue); display: block; margin-bottom: 8px; border-bottom: 1px solid #bae6fd; padding-bottom: 5px; }
+        .analysis-content { font-size: 0.85rem; color: #475569; }
+        .grammar-point { color: var(--ocean-blue); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--ocean-blue); color: #fff; border: none;
+            padding: 14px; border-radius: 10px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #64748b; }
+        .nav-btn:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Fischbrötchen: Norddeutschland</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <audio controls controlsList="nodownload">
+            <source src="fischbrot.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Verständnisfragen (1-8)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Wo sind Fischbrötchen ein absolutes "Muss"?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. In den bayerischen Alpen.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. An der Nordsee oder Ostsee.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Wie wird das Brötchen serviert?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Knusprig, oft warm, mit kaltem Fisch.</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Weich und kalt mit warmem Fisch.</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Welche Gurken werden typischerweise verwendet?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Frische Salatgurken.</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Gewürzgurken.</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Welcher Hering schmeckt mild und cremig?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Der Matjeshering.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Der Bismarckhering.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Was kommt ganz oben auf den Fisch?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Rohe Zwiebelringe.</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Gebratene Speckwürfel.</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Wer oder was ist der "Heringskönig"?</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Ein seltener Hering mit rötlichem Kopf.</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Der erfolgreichste Fischer des Jahres.</button>
+        </div>
+
+        <div class="question-box" id="q7">
+            <span class="question-text">7. Was muss ein Fischer tun, wenn er den Heringskönig fängt?</span>
+            <button class="option" onclick="check(this, 'A', 'q7')">A. Ihn küssen und ins Meer zurückwerfen.</button>
+            <button class="option" onclick="check(this, 'B', 'q7')">B. Ihn für viel Geld auf dem Markt verkaufen.</button>
+        </div>
+
+        <div class="question-box" id="q8">
+            <span class="question-text">8. Was passiert laut Legende im nächsten Jahr?</span>
+            <button class="option" onclick="check(this, 'A', 'q8')">A. Das Wetter wird besonders sonnig.</button>
+            <button class="option" onclick="check(this, 'B', 'q8')">B. Der Fisch kommt mit vielen Heringen zurück.</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            Planen Sie eine Reise an die deutsche Küste? An die Nordsee oder Ostsee? Dort sind frische Fischbrötchen ein Muss. Die Brötchen sind knusprig, oft warm, und der Fisch ist kalt - eine leckere Kombination!
+
+            Das Brötchen wird halbiert und auf der unteren Hälfte liegen dünn geschnittene Gurkenscheiben. Keine Salatgurken, sondern Gewürzgurken. Vielleicht auch noch knackige Salatblätter. Und dann folgt der Fisch. Am beliebtesten sind Matjeshering und Bismarckhering. Der Matjeshering schmeckt mild und cremig, der Bismarckhering leicht säuerlich und würzig. Auf den Fisch kommen dann rohe Zwiebelringe und danach die obere Hälfte des Brötchens.
+
+            Da Heringe für Generationen von Fischerfamilien sehr wichtig waren, kursieren viele Geschichten. An der deutschen Ostseeküste zum Beispiel die vom „Heringskönig“. So nennen Fischer einen seltenen Hering mit einem rötlichen Kopf, der Glück bringt. Wenn ein Fischer so einen Fisch fängt, muss er ihn küssen und ins Meer zurückwerfen. Dann kommt der Fisch im nächsten Jahr mit vielen Heringen zurück.
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🌟 核心词汇精讲</span>
+            <div class="analysis-content">
+                • <b>ein Muss</b>: 必不可少的东西<br>
+                • <b>knusprig</b>: 脆的/酥脆的<br>
+                • <b>halbieren</b>: 对半切开<br>
+                • <b>würzig</b>: 够味的/辛辣调味的<br>
+                • <b>kursieren</b>: 流传（指传说、故事）
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 语法重点：描述与被动</span>
+            <div class="analysis-content">
+                <span class="grammar-point">1. Zustandspassiv (状态被动)</span><br>
+                "Die Brötchen sind knusprig" 或 "wird halbiert"。注意文中如何用简洁的语言描述食物制作过程。<br><br>
+                <span class="grammar-point">2. 比较与区分 (Nicht..., sondern...)</span><br>
+                "Keine Salatgurken, <b>sondern</b> Gewürzgurken"（不是...而是...）。这是 B1 考试中非常高频的表达方式。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 德国文化点拨</span>
+            <div class="analysis-content">
+                <b>Fischbrötchen</b> 是北德灵魂美食。<b>Matjes</b> 是用盐水熟化的嫩鲱鱼，而 <b>Bismarck</b> 则是醋渍鲱鱼。那个关于“鲱鱼王”的传说展示了渔民对大海的敬畏与迷信。
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'B', q2:'A', q3:'B', q4:'A', q5:'A', q6:'A', q7:'A', q8:'B' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId])) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
