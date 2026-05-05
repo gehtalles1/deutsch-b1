@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Flohmarkt im Garten</title>
+    <style>
+        :root {
+            --autumn-orange: #d97706; /* 橙色-跳蚤市场氛围 */
+            --deep-slate: #334155; 
+            --warm-cream: #fffbeb;
+            --text-main: #1e293b;
+            --border-amber: #f59e0b;
+            --correct: #059669;
+            --wrong: #dc2626;
+            --accent-bg: #fef3c7;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f8fafc;
+            /* 背景图：秋日花园集市 */
+            background-image: linear-gradient(rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.85)), 
+                            url('https://images.unsplash.com/photo-1505843513577-22bb7d21e455?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 20px;
+            border-radius: 24px;
+            box-shadow: 0 15px 35px rgba(217, 119, 6, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.2);
+        }
+
+        header {
+            border-bottom: 4px solid var(--autumn-orange);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.2rem;
+            color: var(--autumn-orange);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 900;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 18px;
+            border-radius: 16px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid var(--border-amber);
+        }
+
+        audio { width: 100%; max-width: 320px; height: 40px; }
+
+        .page { display: none; animation: slideIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes slideIn { from { opacity: 0; transform: translateX(10px); } to { opacity: 1; transform: translateX(0); } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--deep-slate);
+            border-left: 5px solid var(--autumn-orange);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #e2e8f0;
+            border-radius: 15px;
+            background: #fff;
+            transition: all 0.3s;
+        }
+
+        .question-text { font-weight: 700; margin-bottom: 12px; display: block; color: var(--deep-slate); font-size: 0.95rem; }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid #f1f5f9; background: #f8fafc;
+            text-align: left; cursor: pointer; border-radius: 10px;
+            transition: all 0.2s; font-size: 0.9rem; color: #475569;
+        }
+
+        .option:hover { border-color: var(--autumn-orange); background: var(--warm-cream); }
+        .option.correct { background: #ecfdf5; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fef2f2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 0.95rem; color: #334155; text-align: justify; }
+        .text-p { margin-bottom: 15px; text-indent: 1em; }
+
+        .analysis-section { background: #fffcf0; padding: 18px; border-radius: 15px; margin-bottom: 15px; border: 1px solid #fef3c7; }
+        .analysis-title { font-weight: bold; color: var(--autumn-orange); display: block; margin-bottom: 8px; border-bottom: 1px solid #fbbf24; padding-bottom: 5px; }
+        .analysis-content { font-size: 0.85rem; color: #4b5563; }
+        .grammar-point { color: var(--autumn-orange); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--autumn-orange); color: #fff; border: none;
+            padding: 14px; border-radius: 12px; cursor: pointer;
+            font-weight: 700; text-align: center; text-decoration: none; font-size: 0.9rem;
+            box-shadow: 0 4px 6px -1px rgba(217, 119, 6, 0.2);
+        }
+        .nav-btn.secondary { background: #64748b; }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Flohmarkt im Garten</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <audio controls controlsList="nodownload">
+            <source src="flohmarkt.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <!-- 第一页：练习 -->
+    <div id="pageQuiz" class="page active">
+        <h2>Verständnisfragen (1-8)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Warum haben sie so viel Kleidung im Schrank?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. Weil sie Wintersachen gekauft haben.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. Sie haben den Schrank lange nicht geöffnet.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Wer hat sogar eine eigene Strickjacke?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Die Katze.</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Der Papa.</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Wo findet der Flohmarkt statt?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Im Wohnzimmer.</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Im Garten.</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Was wird den Gästen zum Essen/Trinken angeboten?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Kaffee und Kuchen.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Schokolade und Kekse.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Warum wird die Hose verkauft?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Weil sie zu klein ist.</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Weil sie kaputt ist.</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Was möchte Markus mit dem grauen Mantel machen?</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Er möchte ihn beim Fußball tragen.</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Er möchte ihn beim Angeln tragen.</button>
+        </div>
+
+        <div class="question-box" id="q7">
+            <span class="question-text">7. Wer hat die Weihnachtspullover gemacht?</span>
+            <button class="option" onclick="check(this, 'A', 'q7')">A. Die Oma.</button>
+            <button class="option" onclick="check(this, 'B', 'q7')">B. Die Nachbarin Caroline.</button>
+        </div>
+
+        <div class="question-box" id="q8">
+            <span class="question-text">8. Welche Farbe hat der Pullover, den sie behalten möchte?</span>
+            <button class="option" onclick="check(this, 'A', 'q8')">A. Gelb.</button>
+            <button class="option" onclick="check(this, 'B', 'q8')">B. Lila.</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <!-- 第二页：原文 -->
+    <div id="pageText" class="page">
+        <h2>Lesetext (Manuskript)</h2>
+        <div class="text-body">
+            <p class="text-p">Der Sommer ist vorbei und es wird wieder kälter. Heute Morgen haben mein Papa und ich den Kleiderschrank mit den Wintersachen geöffnet und festgestellt, dass wir viel zu viel Kleidung haben. Sogar die Katze hat ihre eigene Strickjacke!</p>
+            <p class="text-p">Wir brauchen Platz im Schrank, deshalb wollen wir einen Flohmarkt für unsere Freunde organisieren. Wir werden einen Tisch im Garten aufstellen und unsere alte Winterkleidung verkaufen. Wir wollen auch heiße Schokolade und Kekse anbieten.</p>
+            <p class="text-p">Ich möchte ein Paar Handschuhe und einen Gürtel verkaufen. Mein Papa hat Mützen und Schals in allen Farben. Auch eine Hose will ich verkaufen. Ich mag sie sehr, aber sie ist mir jetzt zu klein.</p>
+            <p class="text-p">Markus, Papas Freund aus dem Fußballverein, möchte den grauen Mantel mit der Kapuze kaufen und ihn beim Angeln tragen. Caroline, unsere Nachbarin, interessiert sich sehr für die Weihnachtspullover – die hat alle meine Oma gestrickt.</p>
+            <p class="text-p">Aber den lila Pullover möchte ich gerne behalten. Oh! Und meine gelben Ohrenschützer. Die sind sehr warm!</p>
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('analysis')">词汇与讲解 →</button>
+        </div>
+    </div>
+
+    <!-- 第三页：分析 -->
+    <div id="analysis" class="page">
+        <h2>刘老师的笔记</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🧥 冬日衣物词汇</span>
+            <div class="analysis-content">
+                • <b>die Strickjacke</b>: 针织开衫。<br>
+                • <b>die Mütze</b>: 暖帽。<br>
+                • <b>der Schal</b>: 围巾。<br>
+                • <b>die Handschuhe</b>: 手套。<br>
+                • <b>die Kapuze</b>: 兜帽（大衣上的帽子）。<br>
+                • <b>die Ohrenschützer</b>: 耳罩（Ohren 耳朵 + Schützer 保护者）。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">🎓 语法重点：Mir ist zu...</span>
+            <div class="analysis-content">
+                文中提到 <span class="grammar-point">"Sie ist mir jetzt zu klein"</span>。<br>
+                在描述衣服尺寸时，习惯用 <b>Dativ (mir/dir...) + zu + 形容词</b>。例如：<br>
+                - Der Mantel ist <b>mir</b> zu groß. (这件大衣对我来说太大了。)
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">✨ 实用口语</span>
+            <div class="analysis-content">
+                <b>Platz brauchen</b> (需要空间/地方)：当家里东西太多放不下时，就可以说 "Wir brauchen Platz!"。这也是德国人举办 Flohmarkt (跳蚤市场) 最常见的初衷。
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">完成学习</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'B', q2:'A', q3:'B', q4:'B', q5:'A', q6:'B', q7:'A', q8:'B' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId])) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
