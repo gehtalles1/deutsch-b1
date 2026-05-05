@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Am Schuhregal</title>
+    <style>
+        :root {
+            --shoe-brown: #8b4513; /* 皮鞋棕 */
+            --grass-green: #2d6a4f; /* 绿色新鞋 */
+            --warm-beige: #fdfaf6;
+            --text-main: #3d405b;
+            --border-tan: #e9c46a;
+            --correct: #16a34a;
+            --wrong: #dc2626;
+            --accent-bg: #f1f8e9;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #faf9f6;
+            /* 背景图：温馨的家居鞋架 */
+            background-image: linear-gradient(rgba(250, 249, 246, 0.9), rgba(250, 249, 246, 0.9)), 
+                            url('https://images.unsplash.com/photo-1595950653106-6c9ebd614d3a?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 20px;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(139, 69, 19, 0.1);
+            border: 1px solid rgba(233, 196, 106, 0.3);
+        }
+
+        header {
+            border-bottom: 4px solid var(--shoe-brown);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            color: var(--shoe-brown);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #dcedc8;
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--grass-green);
+            border-left: 5px solid var(--grass-green);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            background: #fff;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--shoe-brown); font-size: 0.95rem; }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid #eee; background: #fff;
+            text-align: left; cursor: pointer; border-radius: 8px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--grass-green); background: var(--accent-bg); }
+        .option.correct { background: #f0fdf4; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fef2f2; border-color: var(--wrong); color: var(--wrong); }
+
+        /* 对话原文样式 */
+        .text-body { font-size: 0.95rem; color: #334155; margin-bottom: 20px; }
+        .line { margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px dashed #f0f0f0; }
+        .speaker { font-weight: 800; color: var(--shoe-brown); margin-right: 8px; min-width: 60px; display: inline-block; }
+
+        .analysis-section { background: #faf9f6; padding: 18px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #ece9e0; }
+        .analysis-title { font-weight: bold; color: var(--grass-green); display: block; margin-bottom: 8px; border-bottom: 1px solid #d1d5db; padding-bottom: 5px; }
+        .analysis-content { font-size: 0.85rem; color: #4b5563; }
+        .grammar-point { color: var(--shoe-brown); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--grass-green); color: #fff; border: none;
+            padding: 14px; border-radius: 10px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #94a3b8; }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Am Schuhregal: Paula zieht sich an</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <audio controls controlsList="nodownload">
+            <source src="schuhregal.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Verständnisfragen (1-10)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Wessen Schuhe trägt Paula am Anfang?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. Ihre eigenen Gummistiefel.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. Die Schuhe ihrer Mutter.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Warum soll Paula die Schuhe ausziehen?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Weil die Absätze sonst schief werden.</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Weil sie schmutzig sind.</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Wen wollen Paula und ihre Mutter besuchen?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Paulas Freundin.</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Paulas Großmutter.</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Was möchte Paula lieber anziehen als Kniestrümpfe?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Ihre Strumpfhose.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Kurze Socken.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Wo trägt Paula das Kleidungsstück kurzzeitig aus Spaß?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Auf dem Kopf.</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Um den Hals.</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Warum darf Paula heute keine Sandalen tragen?</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Weil sie zu klein sind.</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Weil die Sonne nicht scheint.</button>
+        </div>
+
+        <div class="question-box" id="q7">
+            <span class="question-text">7. Wie ist das Wetter draußen?</span>
+            <button class="option" onclick="check(this, 'A', 'q7')">A. Es regnet.</button>
+            <button class="option" onclick="check(this, 'B', 'q7')">B. Es schneit.</button>
+        </div>
+
+        <div class="question-box" id="q8">
+            <span class="question-text">8. Welche Farbe haben Paulas neue Schuhe?</span>
+            <button class="option" onclick="check(this, 'A', 'q8')">A. Blau.</button>
+            <button class="option" onclick="check(this, 'B', 'q8')">B. Grün.</button>
+        </div>
+
+        <div class="question-box" id="q9">
+            <span class="question-text">9. Wobei braucht Paula keine Hilfe?</span>
+            <button class="option" onclick="check(this, 'A', 'q9')">A. Mit den Schnürsenkeln.</button>
+            <button class="option" onclick="check(this, 'B', 'q9')">B. Mit dem Schuhlöffel.</button>
+        </div>
+
+        <div class="question-box" id="q10">
+            <span class="question-text">10. Was für kleine Socken hat die Mutter gefunden?</span>
+            <button class="option" onclick="check(this, 'A', 'q10')">A. Socken von Paulas Baby-Zeit.</button>
+            <button class="option" onclick="check(this, 'B', 'q10')">B. Socken für die Oma.</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            <div class="line"><span class="speaker">Mama:</span>Ach, Paula, du trägst schon wieder meine Schuhe! Wenn du damit ständig durch die Wohnung läufst, sind die Absätze bald schief.</div>
+            <div class="line"><span class="speaker">Mama:</span>Wir wollen jetzt Oma besuchen, zieh dich bitte an. Schau, hier sind deine Kniestrümpfe.</div>
+            <div class="line"><span class="speaker">Paula:</span>Ich möchte aber lieber meine Strumpfhose anziehen, Mama!</div>
+            <div class="line"><span class="speaker">Mama:</span>Ja gut, das geht auch. Aber sie gehört nicht auf den Kopf!</div>
+            <div class="line"><span class="speaker">Paula:</span>Und welche Schuhe soll ich anziehen? Oh Mama, darf ich meine Sandalen tragen?</div>
+            <div class="line"><span class="speaker">Mama:</span>Aber Paula, heute scheint die Sonne nicht!</div>
+            <div class="line"><span class="speaker">Mama:</span>Du kannst deine Stiefel anziehen. Oder besser: deine Gummistiefel, es regnet draußen. Schau, ich ziehe auch meine Gummistiefel an, dann können wir zusammen durch die Pfützen hüpfen.</div>
+            <div class="line"><span class="speaker">Paula:</span>Ich möchte aber lieber meine neuen grünen Schuhe anziehen! Die passen gut zu meiner Strumpfhose.</div>
+            <div class="line"><span class="speaker">Mama:</span>Paula, du machst mich wahnsinnig! Brauchst du Hilfe mit den Schnürsenkeln?</div>
+            <div class="line"><span class="speaker">Paula:</span>Mama, das kann ich doch schon alleine! Aber ich komme nicht in die Schuhe rein…</div>
+            <div class="line"><span class="speaker">Mama:</span>Hier, versuch es mit dem Schuhlöﬀel, das klappt bestimmt. Jetzt komm, wir müssen los!</div>
+            <div class="line"><span class="speaker">Paula:</span>Okay Mama, ich bin gleich fertig! Sind das da meine Socken?</div>
+            <div class="line"><span class="speaker">Mama:</span>Ja, die habe ich im Schrank gefunden. Schau mal, so kleine Füße hattest du als Baby.</div>
+            <div class="line"><span class="speaker">Paula:</span>Oh! Wirklich? Das kann ich mir gar nicht vorstellen… Wollen wir Oma die Socken zeigen?</div>
+            <div class="line"><span class="speaker">Mama:</span>Gute Idee, Paula! Los geht’s!</div>
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">👞 鞋袜词汇大礼包</span>
+            <div class="analysis-content">
+                • <b>die Absätze</b>: 鞋跟。<br>
+                • <b>die Kniestrümpfe</b>: 及膝袜。<br>
+                • <b>die Strumpfhose</b>: 连裤袜。<br>
+                • <b>die Gummistiefel</b>: 雨靴。<br>
+                • <b>die Schnürsenkel</b>: 鞋带。<br>
+                • <b>der Schuhlöffel</b>: 鞋拔子。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 重点句型解析</span>
+            <div class="analysis-content">
+                <span class="grammar-point">1. "Du machst mich wahnsinnig!"</span><br>
+                “你真让我抓狂！” 这是地道的口语，常用于形容某人让你感到无奈或心烦。<br><br>
+                <span class="grammar-point">2. "Das kann ich schon alleine!"</span><br>
+                “我自己能行！” Alleine 在德语中除了“孤独”还有“独立完成”的意思。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 德国文化点滴</span>
+            <div class="analysis-content">
+                对话中提到的 <b>Pfützen hüpfen</b>（跳水坑）是德国小孩最爱的活动。德国学校非常强调“户外教育”，哪怕下雨，只要穿好 Gummistiefel，大自然就是最好的操场。
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'B', q2:'A', q3:'B', q4:'A', q5:'A', q6:'B', q7:'A', q8:'B', q9:'A', q10:'A' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId])) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
