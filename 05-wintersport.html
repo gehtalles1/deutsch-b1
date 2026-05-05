@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Winterwunderland</title>
+    <style>
+        :root {
+            --winter-blue: #0ea5e9; /* 冰雪蓝 */
+            --dark-blue: #0c4a6e;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --border-gray: #e5e7eb;
+            --correct: #15803d;
+            --wrong: #b91c1c;
+            --accent-bg: #f0f9ff;
+            --highlight-blue: #38bdf8;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f3f4f6;
+            /* 背景图：冬季雪山氛围 */
+            background-image: linear-gradient(rgba(243, 244, 246, 0.88), rgba(243, 244, 246, 0.88)), 
+                            url('https://images.unsplash.com/photo-1478719059408-592965723cbc?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.98);
+            padding: 30px 20px;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        }
+
+        header {
+            border-bottom: 3px solid var(--winter-blue);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.3rem;
+            color: var(--dark-blue);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #bae6fd;
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: fadeIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--dark-blue);
+            border-left: 5px solid var(--winter-blue);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 8px;
+            background: #fff;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--dark-blue); }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid var(--border-gray); background: #fff;
+            text-align: left; cursor: pointer; border-radius: 6px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--winter-blue); background: var(--accent-bg); }
+        .option.correct { background: #dcfce7; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fee2e2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 0.95rem; color: #374151; white-space: pre-line; margin-bottom: 20px; text-align: justify; }
+
+        .analysis-section { background: #f8fafc; padding: 18px; border-radius: 10px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .analysis-title { font-weight: bold; color: var(--dark-blue); display: block; margin-bottom: 8px; border-bottom: 1px solid var(--border-gray); padding-bottom: 5px; }
+        .analysis-content { font-size: 0.85rem; color: #4b5563; }
+        .grammar-point { color: var(--winter-blue); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--winter-blue); color: #fff; border: none;
+            padding: 14px; border-radius: 8px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #64748b; }
+        .nav-btn:active { transform: scale(0.97); }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Winterwunderland</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <!-- 核心：已关联仓库中的 wintersport.mp3 -->
+        <audio controls controlsList="nodownload">
+            <source src="wintersport.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Verständnisfragen (1-6)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Wo verbringt die Familie dieses Jahr ihren Winterurlaub?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. Im Vogtland.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. In den Alpen.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Was ist der Lieblingssport des Erzählers?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. Eishockey</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Skispringen</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Was findet jedes Jahr in Klingenthal statt?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Internationale Wettkämpfe</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Ein großer Karnevalsumzug</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Warum haben die Eltern eine Silbermedaille gewonnen?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Für das schnellste Schlittschuhlaufen.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Für das beste Kostüm auf dem Eis.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Was gefällt Lilia am Eiskunstlaufen am besten?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Die besonderen Kleider.</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Die Geschwindigkeit.</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Welche Medaille benutzt Lilia immer für den ersten Platz?</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Die Goldmedaille.</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Die Bronzemedaille.</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            Wir haben es geschafft! Nachdem ich mit Adam alles recherchiert und organisiert hatte, konnten wir unsere Eltern davon überzeugen, dieses Jahr unseren Winterurlaub in einem wunderschönen Skigebiet im Vogtland zu verbringen.
+
+            Für jeden ist etwas dabei: Hänge zum Rodeln, Skifahren oder Snowboarden, eine Eislaufbahn, endlose Bergwälder und vor allem die berühmte Wintersport Arena in Klingenthal. Dort finden jedes Jahr internationale Wettkämpfe statt.
+
+            Meine ganze Familie liebt den Wintersport.
+
+            Skispringen ist mein Lieblingssport. Ich kann es kaum erwarten, die Athlet*innen in der Vogtland Arena mit ihrer berühmten Sprungschanze am Schwarzberg zu bewundern.
+
+            Meine Eltern freuen sich vor allem auf das Schlittschuhlaufen. Sie trainieren schon seit Jahren und haben sogar schon eine Silbermedaille gewonnen. Gut, das war zu Karneval ein Wettbewerb für das beste Kostüm auf der Eisfläche, aber sie sind wirklich gut!
+
+            Meine kleine Schwester Lilia möchte auch Eiskunstläuferin werden. Ihr gefallen vor allem die besonderen Kleider. Zu Hause verkleidet sie sich mit Tüchern und Bändern, macht Sprünge und Pirouetten und spielt gleichzeitig die Jury. Wir haben ihr sogar ein Podium aus Pappe gebaut und Medaillen gebastelt. Die Bronzemedaille ist für sie am hübschesten. Sie nimmt sie immer für den ersten Platz.
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🌟 核心词汇精讲</span>
+            <div class="analysis-content">
+                这篇文章涉及冬季运动主题[cite: 1]：<br>
+                • <b>überzeugen</b>: 说服[cite: 1]。<br>
+                • <b>das Skigebiet</b>: 滑雪区[cite: 1]。<br>
+                • <b>die Sprungschanze</b>: 跳台滑雪跳台[cite: 1]。<br>
+                • <b>Schlittschuhlaufen</b>: 滑冰[cite: 1]。<br>
+                • <b>die Pirouette</b>: 旋转[cite: 1]。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 语法重点：从句与动词搭配</span>
+            <div class="analysis-content">
+                <span class="grammar-point">1. Nachdem 从句 (时态一致)</span><br>
+                原文："<b>Nachdem</b> ich alles recherchiert <b>hatte</b>, <b>konnten</b> wir..."[cite: 1]。从句用过去完成时，主句用过去时[cite: 1]。<br><br>
+                <span class="grammar-point">2. 表达期待 (kaum erwarten)</span><br>
+                "Ich kann es <b>kaum erwarten</b>..."：我等不及了/非常期待[cite: 1]。<br><br>
+                <span class="grammar-point">3. 介词短语 (für jdn. sein)</span><br>
+                "Für jeden ist etwas dabei"：每个人都能找到适合自己的东西[cite: 1]。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 备考小贴士</span>
+            <div class="analysis-content">
+                在描述 **"Urlaub" (度假)** 时，学会描述不同季节。本文提到了 <b>Bronzemedaille</b> (铜牌), <b>Silbermedaille</b> (银牌), <b>Goldmedaille</b> (金牌)[cite: 1]，这些在讨论竞赛或爱好时很有用。
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'A', q2:'B', q3:'A', q4:'B', q5:'A', q6:'B' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId])) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
