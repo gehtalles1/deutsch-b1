@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deutsch Übung: Am Flughafen</title>
+    <style>
+        :root {
+            --airport-blue: #1e40af; /* 登机蓝 */
+            --sky-gray: #f1f5f9;
+            --navy-dark: #1e293b;
+            --text-main: #334155;
+            --border-gray: #e2e8f0;
+            --correct: #16a34a;
+            --wrong: #dc2626;
+            --accent-bg: #eff6ff;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background-color: #f8fafc;
+            /* 背景图：机场跑道风情 */
+            background-image: linear-gradient(rgba(248, 250, 252, 0.85), rgba(248, 250, 252, 0.85)), 
+                            url('https://images.unsplash.com/photo-1436491865332-7a61a109c7f3?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px 10px;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.96);
+            padding: 30px 20px;
+            border-radius: 16px;
+            box-shadow: 0 15px 30px rgba(30, 64, 175, 0.1);
+            backdrop-filter: blur(5px);
+        }
+
+        header {
+            border-bottom: 4px solid var(--airport-blue);
+            margin-bottom: 25px;
+            padding-bottom: 15px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 1.25rem;
+            color: var(--navy-dark);
+            margin: 0;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-weight: 800;
+        }
+
+        .audio-wrapper {
+            background: var(--accent-bg);
+            padding: 15px;
+            border-radius: 12px;
+            text-align: center;
+            margin-bottom: 25px;
+            border: 1px solid #bfdbfe;
+        }
+
+        audio { width: 100%; max-width: 320px; height: 35px; }
+
+        .page { display: none; animation: slideIn 0.4s ease; }
+        .active { display: block; }
+        @keyframes slideIn { from { transform: translateY(10px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        h2 {
+            font-size: 1.05rem;
+            color: var(--navy-dark);
+            border-left: 5px solid var(--airport-blue);
+            padding-left: 12px;
+            margin: 25px 0 15px;
+        }
+
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            border: 1px solid var(--border-gray);
+            border-radius: 10px;
+            background: #fff;
+            transition: box-shadow 0.2s;
+        }
+
+        .question-text { font-weight: 600; margin-bottom: 12px; display: block; color: var(--navy-dark); font-size: 0.95rem; }
+
+        .option {
+            display: block; width: 100%; padding: 12px; margin: 8px 0;
+            border: 1px solid var(--border-gray); background: #fcfcfc;
+            text-align: left; cursor: pointer; border-radius: 8px;
+            transition: all 0.2s; font-size: 0.9rem;
+        }
+
+        .option:hover { border-color: var(--airport-blue); background: var(--accent-bg); }
+        .option.correct { background: #f0fdf4; border-color: var(--correct); color: var(--correct); font-weight: bold; }
+        .option.wrong { background: #fef2f2; border-color: var(--wrong); color: var(--wrong); }
+
+        .text-body { font-size: 0.95rem; color: #334155; white-space: pre-line; margin-bottom: 20px; text-align: justify; }
+
+        .analysis-section { background: #f8fafc; padding: 18px; border-radius: 12px; margin-bottom: 15px; border: 1px solid #e2e8f0; }
+        .analysis-title { font-weight: bold; color: var(--airport-blue); display: block; margin-bottom: 8px; border-bottom: 1px solid #cbd5e1; padding-bottom: 5px; }
+        .analysis-content { font-size: 0.85rem; color: #475569; }
+        .grammar-point { color: var(--airport-blue); font-weight: bold; }
+
+        .nav-controls { display: flex; gap: 10px; margin-top: 30px; }
+        .nav-btn {
+            flex: 1; background: var(--airport-blue); color: #fff; border: none;
+            padding: 14px; border-radius: 10px; cursor: pointer;
+            font-weight: 600; text-align: center; text-decoration: none; font-size: 0.9rem;
+        }
+        .nav-btn.secondary { background: #64748b; }
+        .nav-btn:active { transform: scale(0.98); }
+    </style>
+</head>
+<body class="notranslate">
+
+<div class="container">
+    <header>
+        <h1>Am Flughafen: Reisevorbereitungen</h1>
+    </header>
+
+    <div class="audio-wrapper">
+        <audio controls controlsList="nodownload">
+            <source src="flughafen.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <div id="pageQuiz" class="page active">
+        <h2>Verständnisfragen (1-8)</h2>
+        
+        <div class="question-box" id="q1">
+            <span class="question-text">1. Warum braucht Frau Krause diesen Urlaub?</span>
+            <button class="option" onclick="check(this, 'A', 'q1')">A. Sie hat ihren Job bei der Bank verloren.</button>
+            <button class="option" onclick="check(this, 'B', 'q1')">B. Sie arbeitet oft bis spät in die Nacht.</button>
+        </div>
+
+        <div class="question-box" id="q2">
+            <span class="question-text">2. Wohin möchte Frau Krause fliegen?</span>
+            <button class="option" onclick="check(this, 'A', 'q2')">A. In die Karibik.</button>
+            <button class="option" onclick="check(this, 'B', 'q2')">B. Zu einer großen Bank in den USA.</button>
+        </div>
+
+        <div class="question-box" id="q3">
+            <span class="question-text">3. Was macht sie zuerst am Check-In-Schalter?</span>
+            <button class="option" onclick="check(this, 'A', 'q3')">A. Sie kauft ein neues Ticket.</button>
+            <button class="option" onclick="check(this, 'B', 'q3')">B. Sie zeigt ihren Pass und gibt Koffer auf.</button>
+        </div>
+
+        <div class="question-box" id="q4">
+            <span class="question-text">4. Was sieht man bereits durch die Scheibe?</span>
+            <button class="option" onclick="check(this, 'A', 'q4')">A. Den Tower und ein Flugzeug.</button>
+            <button class="option" onclick="check(this, 'B', 'q4')">B. Den Duty-free-Bereich.</button>
+        </div>
+
+        <div class="question-box" id="q5">
+            <span class="question-text">5. Von welchem Gate (Flugsteig) fliegt sie ab?</span>
+            <button class="option" onclick="check(this, 'A', 'q5')">A. Von Gate B.</button>
+            <button class="option" onclick="check(this, 'B', 'q5')">B. Von Gate A.</button>
+        </div>
+
+        <div class="question-box" id="q6">
+            <span class="question-text">6. Was ist die Leidenschaft von Frau Krause?</span>
+            <button class="option" onclick="check(this, 'A', 'q6')">A. Shopping im Duty-free-Bereich.</button>
+            <button class="option" onclick="check(this, 'B', 'q6')">B. Flugzeuge fotografieren.</button>
+        </div>
+
+        <div class="question-box" id="q7">
+            <span class="question-text">7. Was hofft sie für die Rückreise?</span>
+            <button class="option" onclick="check(this, 'A', 'q7')">A. Dass sie keinen Zoll bezahlen muss.</button>
+            <button class="option" onclick="check(this, 'B', 'q7')">B. Dass der Flug nicht zu lange dauert.</button>
+        </div>
+
+        <div class="question-box" id="q8">
+            <span class="question-text">8. Warum bleibt die Startbahn an diesem Tag leer?</span>
+            <button class="option" onclick="check(this, 'A', 'q8')">A. Wegen eines schweren Unwetters.</button>
+            <button class="option" onclick="check(this, 'B', 'q8')">B. Weil die Fluglotsen streiken.</button>
+        </div>
+
+        <div class="nav-controls">
+            <a href="main.html" class="nav-btn secondary">回到选关主页</a>
+            <button class="nav-btn" onclick="showPage('pageText')">查看原文 →</button>
+        </div>
+    </div>
+
+    <div id="pageText" class="page">
+        <h2>Hörtext (Skript)</h2>
+        <div class="text-body">
+            Endlich geht es in den Urlaub! Den hat sich Frau Krause auch wirklich verdient. Sie arbeitet für eine große Bank und muss auch schon mal bis spät in die Nacht arbeiten. Jetzt hat sie eine Woche ganz für sich und will in die Karibik fliegen. Sie kommt rechtzeitig am Check-In-Schalter an, zeigt ihren Pass vor und gibt ihre beiden Koffer auf.
+
+            Währenddessen herrscht auf dem Flughafen reger Betrieb. Ein Pilot und eine Stewardess eilen an Frau Krause vorbei. Durch eine Scheibe kann man bereits den Tower und ein Flugzeug erkennen, das auf der Landebahn steht. Durch ein anderes Fenster sieht man ein Gepäckband mit großen Koffern und Rucksäcken.
+
+            Frau Krause erhält ihre Bordkarte und bedankt sich. Sie fliegt heute von Gate A (vom Flugsteig A) ab. Jetzt kann sie endlich in den Duty-free-Bereich. Shopping ist ihre Leidenschaft und sie hofft, dass sie auf ihrer Rückreise keinen Zoll bezahlen muss.
+
+            Zu diesem Zeitpunkt weiß Frau Krause aber noch nicht, dass die Fluglotsen angefangen haben zu streiken. Die Startbahn wird für den Rest des Tages leer bleiben.
+        </div>
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageQuiz')">← 返回练习</button>
+            <button class="nav-btn" onclick="showPage('pageAnalysis')">刘老师的讲解 →</button>
+        </div>
+    </div>
+
+    <div id="pageAnalysis" class="page">
+        <h2>刘老师的讲解</h2>
+        
+        <div class="analysis-section">
+            <span class="analysis-title">🌟 核心词汇精讲</span>
+            <div class="analysis-content">
+                • <b>verdienen</b>: 值得/挣得。这里指“应得的休假”。<br>
+                • <b>der Schalter</b>: 柜台（如 Check-In-Schalter）。<br>
+                • <b>aufgeben</b>: 这里特指“托运（行李）”。<br>
+                • <b>reger Betrieb</b>: 繁忙/熙熙攘攘。<br>
+                • <b>streiken</b>: 罢工。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">📖 语法重点：时间与因果</span>
+            <div class="analysis-content">
+                <span class="grammar-point">1. Währenddessen (与此同时)</span><br>
+                这是一个非常实用的副词，用于连接两个并行发生的动作，是 B1 写作和口语加分的词汇。<br><br>
+                <span class="grammar-point">2. 从句：...dass die Fluglotsen angefangen haben...</span><br>
+                注意 dass 引导宾语从句时，变位动词（haben）必须放在句末。
+            </div>
+        </div>
+
+        <div class="analysis-section">
+            <span class="analysis-title">💡 德国生活贴士</span>
+            <div class="analysis-content">
+                在德国，<b>Streik (罢工)</b> 是一个非常现实的话题。无论是火车（DB）还是机场（Lufthansa/Fluglotsen），罢工都可能突然发生。建议大家在出行前下载相关的 App 随时关注动态。另外，<b>Zoll (海关)</b> 也是购物时需要注意的法律问题。
+            </div>
+        </div>
+
+        <div class="nav-controls">
+            <button class="nav-btn secondary" onclick="showPage('pageText')">← 返回原文</button>
+            <button class="nav-btn" onclick="location.href='main.html'">学习完成</button>
+        </div>
+    </div>
+</div>
+
+<script>
+    const sol = { 
+        q1:'B', q2:'A', q3:'B', q4:'A', q5:'B', q6:'A', q7:'A', q8:'B' 
+    };
+
+    function check(btn, choice, qId) {
+        const parent = document.getElementById(qId);
+        if (parent.dataset.done) return;
+        if (choice === sol[qId]) {
+            btn.classList.add('correct');
+        } else {
+            btn.classList.add('wrong');
+            parent.querySelectorAll('.option').forEach(b => {
+                if (b.innerText.startsWith(sol[qId])) {
+                    b.classList.add('correct');
+                }
+            });
+        }
+        parent.dataset.done = "true";
+    }
+
+    function showPage(id) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        window.scrollTo(0,0);
+    }
+</script>
+
+</body>
+</html>
