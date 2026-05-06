@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Lesetraining</title>
+    <style>
+        :root {
+            --primary: #005437;
+            --primary-light: #e8f5e9;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --accent: #ed8936;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        /* 导航栏 */
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 1px solid #edf2f7;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+        }
+
+        /* 核心内容 */
+        .container { max-width: 800px; margin: 24px auto 140px; padding: 0 16px; }
+
+        /* 文章卡片 */
+        .article-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 32px;
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 32px;
+        }
+
+        .article-card h1 { 
+            margin-top: 0; 
+            font-size: 1.5rem; 
+            color: var(--primary);
+            border-left: 5px solid var(--primary);
+            padding-left: 15px;
+        }
+        
+        .full-text {
+            font-size: 1.1rem;
+            color: #2d3748;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+
+        /* 题目设计 */
+        .q-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.3s ease;
+        }
+
+        .q-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .q-text { font-weight: 700; font-size: 1.1rem; margin-bottom: 24px; display: block; line-height: 1.4; }
+
+        .options { display: flex; gap: 12px; }
+        .btn-opt {
+            flex: 1;
+            padding: 16px;
+            border: 2px solid #edf2f7;
+            background: var(--white);
+            border-radius: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .is-correct { background: #10b981 !important; color: white !important; border-color: #10b981 !important; }
+        .is-wrong { background: #ef4444 !important; color: white !important; border-color: #ef4444 !important; }
+        
+        .explanation {
+            margin-top: 20px;
+            padding: 16px;
+            background: #f1f5f9;
+            border-radius: 10px;
+            font-size: 0.95rem;
+            border-left: 4px solid var(--primary);
+            display: none;
+            color: #475569;
+        }
+
+        /* 底部固定播放器 */
+        .audio-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-top: 1px solid #edf2f7;
+            padding: 16px 20px 34px;
+            z-index: 1000;
+        }
+
+        audio { width: 100%; height: 40px; border-radius: 30px; }
+
+        @media (max-width: 600px) {
+            .article-card { padding: 24px; }
+            .header-title { font-size: 1rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Lesetraining</div>
+</header>
+
+<div class="container">
+    <section class="article-card">
+        <h1>Mein Berufswechsel</h1>
+        <div class="full-text">Wäre die Mauer nicht gefallen, dann würde ich wahrscheinlich immer noch im Klassenzimmer stehen. Fünf Jahre lang war ich Grundschullehrerin für Deutsch und Sport in Ostberlin. Dann kam die Wende, die Mauer war weg und plötzlich war mein DDR-Examen wertlos. 
+
+Meine Tochter war gerade geboren, ich war alleinerziehend und deshalb für ein Jahr zu Hause. Als ich wieder in den Beruf einsteigen wollte, gab es nicht nur einen neuen Start, sondern auch viel zu viele Lehrer für viel zu wenige Stellen. 
+
+Zufällig hatte in Berlin gerade die ITB eröffnet, die größte Reisemesse der Welt. Ich bin sofort hin und war so begeistert, dass ich eine Umschulung zur Reiseverkehrskauffrau begann. Nach zwei Jahren hatte ich das Diplom in der Tasche und einen Job bei einer Reiseagentur für Arabien und Südostasien. Ich bin mit dem Jeep durch die Wahiba-Wüste in Oman gefahren, habe Routen geplant und in Malaysia dutzende Hotels getestet. 
+
+Doch allmählich ließ die Begeisterung für den Job nach. Bis ich wusste, was ich wirklich wollte, sind mehr als fünf Jahre vergangen. Irgendwann fiel mir auf, dass ich in Kundengesprächen immer abdriftete: Statt dem Kunden zuzuhören, habe ich ihn gemustert. Welchen Anzug trägt er? Passt die Krawatte zu den Schuhen? 
+
+Dann fand ich in der Zeitung ein Porträt über eine Stilberaterin. Ich wusste sofort: Das ist es! Für Mode und Farben hatte ich mich immer schon interessiert, jetzt fehlte nur noch die passende Ausbildung. 
+
+Bei einer Hamburger Fernakademie machte ich die Weiterbildung zur Stilberaterin. Das war stressig: Das war stressig: tagsüber war ich bei der Arbeit, abends bei meiner Tochter, an den Wochenenden und im Urlaub habe ich mich in die Ausbildung gekniet. Zwei anstrengende Jahre später hatte ich mein Diplom. 
+
+Vor vier Jahren habe ich mich dann selbstständig gemacht. Jetzt bin ich Stilberaterin, gebe Kurse an Volkshochschulen, bekomme Aufträge für Modenschauen und Fotoshootings. Ich weiß, ich bin angekommen. Mode, Farben, Stoffe – das ist mein Zuhause. Wenn ich einer Kundin zeigen kann, welche Farben ihr stehen, wie sie sich perfekt in Szene setzt, dann macht mich das glücklich.</div>
+    </section>
+
+    <!-- 5道练习题 -->
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 1</span>
+        <span class="q-text">Marita war ein Jahr lang nicht berufstätig, um sich um ihr Kind zu kümmern.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Sie war alleinerziehend und für ein Jahr zu Hause.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie war tatsächlich ein Jahr zu Hause.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 2</span>
+        <span class="q-text">Marita musste als Reiseverkehrskauffrau auch im Ausland arbeiten.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Sie arbeitete im Oman und in Malaysia.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Ihre Tätigkeit umfasste internationale Einsätze.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 3</span>
+        <span class="q-text">Die Kunden, mit denen Marita sprach, waren oft nicht gut angezogen.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie hat sie nur gemustert; der Text sagt nichts über die Qualität der Kleidung.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig (Falsch): Der Text enthält keine Information darüber, dass sie schlecht angezogen waren.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 4</span>
+        <span class="q-text">Marita machte ihre Weiterbildung zur Stilberaterin parallel zu ihrem Job.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Tagsüber Arbeit, abends/Wochenende Ausbildung.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie hat beides gleichzeitig gemacht.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 5</span>
+        <span class="q-text">Die Ausbildung zur Stilberaterin dauerte insgesamt vier Jahre.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Die Ausbildung dauerte 2 Jahre; seit 4 Jahren ist sie selbstständig.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig (Falsch): Die Ausbildung dauerte nur zwei Jahre.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls preload="auto">
+        <source src="berufswechsel.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+
+        buttons.forEach(b => b.disabled = true);
+        if(isOk) { el.classList.add('is-correct'); } 
+        else { el.classList.add('is-wrong'); }
+
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
