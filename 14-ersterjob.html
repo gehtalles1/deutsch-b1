@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Lesetraining - Mein erster Job</title>
+    <style>
+        :root {
+            --primary: #4e342e; /* 咖啡深褐 */
+            --primary-light: #efebe9;
+            --text-main: #3e2723;
+            --text-muted: #6d4c41;
+            --bg: #fff8e1; /* 奶油黄 */
+            --white: #ffffff;
+            --accent: #d84315; /* 暖橙 */
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            /* 背景：咖啡馆氛围 */
+            background-image: linear-gradient(rgba(255, 248, 225, 0.92), rgba(255, 248, 225, 0.92)), 
+                              url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(78, 52, 46, 0.15);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+            letter-spacing: 1px;
+        }
+
+        .container { max-width: 800px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-bottom: 32px;
+            border-top: 8px solid var(--primary);
+        }
+
+        .article-card h1 { 
+            margin-top: 0; 
+            font-size: 1.6rem; 
+            color: var(--primary);
+            margin-bottom: 24px;
+            text-align: center;
+        }
+        
+        .full-text {
+            font-size: 1.1rem;
+            color: #3e2723;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+
+        .q-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #d7ccc8;
+            transition: all 0.2s;
+        }
+
+        .q-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .q-text { font-weight: 700; font-size: 1.1rem; margin-bottom: 20px; display: block; line-height: 1.4; }
+
+        .options { display: flex; gap: 12px; }
+        .btn-opt {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #efebe9;
+            background: var(--white);
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .is-correct { background: #2e7d32 !important; color: white !important; border-color: #2e7d32 !important; }
+        .is-wrong { background: #c62828 !important; color: white !important; border-color: #c62828 !important; }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 14px;
+            background: #fdf5e6;
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none;
+            color: #5d4037;
+            border-left: 4px solid var(--primary);
+        }
+
+        /* 底部固定播放器 */
+        .audio-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #d7ccc8;
+            padding: 15px 20px 35px;
+            z-index: 1000;
+        }
+
+        audio { width: 100%; height: 40px; }
+
+        @media (max-width: 600px) {
+            .article-card { padding: 24px; }
+            .header-title { font-size: 0.9rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Lesetraining: Erster Job</div>
+</header>
+
+<div class="container">
+    <section class="article-card">
+        <h1>Mein erster Job im Café</h1>
+        <div class="full-text">Hallo, ich heiße Laura, bin 17 Jahre alt und möchte euch von meinem ersten Ferienjob erzählen. Letzten Sommer habe ich vier Wochen lang in einem kleinen Café im Stadtzentrum gearbeitet. Eigentlich hatte ich mich nur als Aushilfe fürs Geschirrspülen beworben, aber schon am zweiten Tag durfte ich viel mehr machen.
+
+Am ersten Tag war ich sehr aufgeregt. Ich wusste nicht genau, wie ich mit Kunden umgehen sollte und hatte Angst, etwas falsch zu machen. Glücklicherweise war meine Chefin sehr nett. Sie hat mir gezeigt, wie man die Kaffeemaschine bedient, Kuchenstücke richtig schneidet und Bestellungen aufnimmt. Trotzdem lief anfangs nicht alles perfekt. Schon am zweiten Tag habe ich einem Kunden versehentlich den falschen Kaffee gebracht. Er war aber sehr freundlich und hat nur gelächelt.
+
+Meine Arbeitszeiten waren von 7:30 Uhr bis 14 Uhr. Besonders schwer fiel es mir in der ersten Woche, so früh aufzustehen. Meistens musste ich schon um 6 Uhr aufstehen, damit ich pünktlich war. Im Café herrschte morgens immer viel Betrieb. Viele Leute kamen auf dem Weg zur Arbeit vorbei und bestellten Kaffee und Croissants zum Mitnehmen.
+
+Anfangs war ich total gestresst, weil ich die Bestellungen schnell aufnehmen und gleichzeitig das Wechselgeld richtig herausgeben musste. Nach etwa einer Woche wurde es aber leichter. Ich hatte die Kasse besser im Griff und kannte die Stammkunden schon ein bisschen.
+
+Ein besonderes Erlebnis hatte ich an einem Samstagmorgen. Da kam eine ältere Dame ins Café, die ihren Geldbeutel vergessen hatte. Ich durfte ihr den Kaffee trotzdem schenken, weil die Chefin meinte: „Freundlichkeit ist unser wichtigstes Produkt.“ Das hat mich sehr beeindruckt.
+
+Am Ende meiner vier Wochen hat mir die Chefin ein sehr nettes Arbeitszeugnis geschrieben und sogar ein kleines Geschenk überreicht: eine Tasse mit dem Café-Logo und eine Schachtel Pralinen. Ich war richtig stolz auf mich, weil ich gemerkt habe, wie viel ich in kurzer Zeit lernen konnte. Besonders den freundlichen Umgang mit Menschen und wie man in stressigen Situationen ruhig bleibt. Ich freue mich schon darauf, nächsten Sommer wieder dort zu arbeiten. Vielleicht darf ich dann sogar ein bisschen beim Backen helfen. Das wäre toll!</div>
+    </section>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 1</span>
+        <span class="q-text">Laura durfte schon am zweiten Tag mehr Aufgaben übernehmen.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Sie sagt, sie durfte schon am zweiten Tag viel mehr machen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Der Text bestätigt die Zunahme der Aufgaben.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 2</span>
+        <span class="q-text">Am ersten Tag zeigte die Chefin Laura, wie man Kuchen backt.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie zeigte ihr, wie man die Kaffeemaschine bedient und Kuchenstücke schneidet, nicht das Backen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Die Chefin zeigte ihr das Bedienen der Maschine und das Schneiden, nicht das Backen.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 3</span>
+        <span class="q-text">Laura musste um 7:30 Uhr im Café sein, stand aber oft schon um 6 Uhr auf.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Ihre Arbeitszeit begann um 7:30 Uhr und sie stand um 6 Uhr auf.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Diese Zeitangaben finden sich exakt so im Text.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 4</span>
+        <span class="q-text">Laura hatte von Anfang an keine Probleme mit der Kasse.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie sagt, sie war anfangs total gestresst mit der Kasse und dem Wechselgeld.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie war anfangs gestresst und musste sich erst einarbeiten.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 5</span>
+        <span class="q-text">Die Chefin schenkte einer Kundin einen Kaffee, weil diese kein Geld dabei hatte.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Die Kundin hatte ihren Geldbeutel vergessen und durfte den Kaffee geschenkt bekommen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das Erlebnis wird genau so beschrieben.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 6</span>
+        <span class="q-text">Sie möchte nächstes Jahr vielleicht beim Backen helfen.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Am Ende sagt sie, dass sie sich darauf freut, vielleicht beim Backen zu helfen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das ist ihr ausdrücklicher Wunsch für den nächsten Sommer.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls preload="auto">
+        <source src="ersterjob.mp3" type="audio/mpeg">
+        Ihr Browser unterstützt das Audio-Element nicht.
+    </audio>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+
+        buttons.forEach(b => {
+            b.disabled = true;
+            b.style.opacity = "0.6";
+        });
+        
+        el.style.opacity = "1";
+        if(isOk) { 
+            el.classList.add('is-correct'); 
+        } else { 
+            el.classList.add('is-wrong'); 
+            buttons.forEach(b => {
+                if(b !== el) b.classList.add('is-correct');
+            });
+        }
+
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
