@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Lesetraining - Mein Leben im Ausland</title>
+    <style>
+        :root {
+            --primary: #a0522d; /* Sienna / Terrakotta */
+            --primary-light: #fdf5e6;
+            --text-main: #2d3748;
+            --text-muted: #718096;
+            --bg: #f7fafc;
+            --white: #ffffff;
+            --accent: #4a5568; /* Schieferblau */
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            /* Subtiler Hintergrund: Weltkarte / Reise-Vibe */
+            background-image: linear-gradient(rgba(247, 250, 252, 0.9), rgba(247, 250, 252, 0.9)), 
+                              url('https://images.unsplash.com/photo-1526772662000-3f88f10405ff?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+            letter-spacing: 0.5px;
+        }
+
+        .container { max-width: 800px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 32px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            margin-bottom: 32px;
+            border-left: 8px solid var(--primary);
+        }
+
+        .article-card h1 { 
+            margin-top: 0; 
+            font-size: 1.6rem; 
+            color: var(--primary);
+            margin-bottom: 24px;
+        }
+        
+        .full-text {
+            font-size: 1.1rem;
+            color: #1a202c;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+
+        .q-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #e2e8f0;
+            transition: all 0.2s ease;
+        }
+
+        .q-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            color: var(--primary);
+            font-weight: 800;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .q-text { font-weight: 700; font-size: 1.1rem; margin-bottom: 20px; display: block; line-height: 1.5; }
+
+        .options { display: flex; gap: 12px; }
+        .btn-opt {
+            flex: 1;
+            padding: 15px;
+            border: 2px solid #edf2f7;
+            background: var(--white);
+            border-radius: 10px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.2s;
+        }
+
+        .is-correct { background: #10b981 !important; color: white !important; border-color: #10b981 !important; }
+        .is-wrong { background: #ef4444 !important; color: white !important; border-color: #ef4444 !important; }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 14px;
+            background: var(--primary-light);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            display: none;
+            color: #8b4513;
+            border-left: 4px solid var(--primary);
+        }
+
+        .audio-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.96);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e2e8f0;
+            padding: 15px 20px 35px;
+            z-index: 1000;
+        }
+
+        audio { width: 100%; height: 40px; }
+
+        @media (max-width: 600px) {
+            .article-card { padding: 24px; }
+            .header-title { font-size: 1rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Lesetraining: Ausland</div>
+</header>
+
+<div class="container">
+    <section class="article-card">
+        <h1>Mein Leben im Ausland</h1>
+        <div class="full-text">Ich heiße Johanna und bin 13 Jahre alt. Mein Vater arbeitet als Ingenieur für eine internationale Firma, deshalb wohnen wir nie sehr lange an einem Ort. Etwa alle vier bis fünf Jahre ziehen wir um. Geboren wurde ich in Hamburg, aber daran erinnere ich mich kaum, weil wir schon bald nach Kanada geflogen sind. Meine ersten wirklichen Erinnerungen stammen aus Toronto.
+
+In Kanada haben wir in einer kleinen Wohnung in der Nähe des Stadtzentrums gelebt. Oft gingen wir am Wochenende in den großen Park, wo ich Fahrradfahren gelernt habe. Auch an die vielen Schneestürme erinnere ich mich noch sehr gut. Der Winter war dort immer eisig kalt und trotzdem habe ich die Zeit genossen.
+
+Später sind wir nach Italien gezogen. In Rom hatten wir eine helle Wohnung mit einem Balkon voller Blumen. Besonders gefallen haben mir die bunten Märkte, auf denen es frisches Obst, Gemüse und leckere Oliven gab. Ich habe in Italien die Grundschule besucht. Dort wurde viel Wert auf gemeinsames Lernen gelegt und ich fand schnell neue Freunde.
+
+Mit neun Jahren sind wir dann nach Brüssel umgezogen. Anfangs war es für mich schwierig, weil ich kein Französisch konnte. Doch nach einem Jahr habe ich die Sprache schon recht gut verstanden. Besonders spannend fand ich, dass es in Belgien gleich drei Amtssprachen gibt: Niederländisch, Französisch und Deutsch.
+
+Seit knapp einem Jahr leben wir in Singapur. Hier ist alles noch neu für mich. Es gibt viele Wolkenkratzer und beeindruckende Einkaufszentren. Das Klima ist ganz anders als in Europa. Fast jeden Tag ist es sehr heiß und feucht. Manchmal vermisse ich die Jahreszeiten, wie ich sie aus Europa kenne. Aber inzwischen habe ich gemerkt, dass man sich mit der Zeit fast überall einleben kann.
+
+Einerseits wünsche ich mir manchmal ein festes Zuhause, andererseits finde ich es spannend, so viele Länder und Kulturen kennenzulernen.</div>
+    </section>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 1</span>
+        <span class="q-text">Johanna hat viele Erinnerungen an ihre Kindheit in Hamburg.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie sagt, sie erinnert sich kaum an Hamburg.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie erinnert sich kaum daran, da sie Hamburg früh verlassen hat.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 2</span>
+        <span class="q-text">In Kanada wohnte Johannas Familie direkt im Stadtzentrum.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Die Wohnung lag in der Nähe des Stadtzentrums, nicht direkt darin.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie wohnten in der Nähe des Zentrums.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 3</span>
+        <span class="q-text">In Italien besuchte Johanna den Kindergarten.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie besuchte dort die Grundschule.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie war in der Grundschule, nicht im Kindergarten.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 4</span>
+        <span class="q-text">In Brüssel konnte Johanna schon von Anfang an sehr gut Französisch.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie sagt, anfangs war es schwierig, weil sie kein Französisch konnte.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie lernte es erst im Laufe des ersten Jahres.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 5</span>
+        <span class="q-text">In Singapur findet Johanna das Klima sehr ungewohnt.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Sie sagt, es ist heiß und feucht und sie vermisst die europäischen Jahreszeiten.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das Klima ist für sie eine große Umstellung.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 6</span>
+        <span class="q-text">Johanna denkt, dass das Leben in verschiedenen Ländern auch Vorteile hat.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Sie findet es spannend, so viele Länder und Kulturen kennenzulernen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie sieht das Kennenlernen von Kulturen als positiven Aspekt.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls preload="auto">
+        <source src="ausland.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+
+        buttons.forEach(b => {
+            b.disabled = true;
+            b.style.opacity = "0.6";
+        });
+        
+        el.style.opacity = "1";
+        if(isOk) { 
+            el.classList.add('is-correct'); 
+        } else { 
+            el.classList.add('is-wrong'); 
+            buttons.forEach(b => {
+                if(b !== el) b.classList.add('is-correct');
+            });
+        }
+
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
