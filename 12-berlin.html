@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Lesetraining - Berlin Besuch</title>
+    <style>
+        :root {
+            --primary: #00305e; /* Preußischblau */
+            --primary-light: #e3efff;
+            --text-main: #1a202c;
+            --text-muted: #4a5568;
+            --bg: #f0f4f8;
+            --white: #ffffff;
+            --accent: #c19a6b; /* Gold/Bronze */
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: var(--bg);
+            /* Subtiler Hintergrund: Berlin Skyline Silhouette */
+            background-image: linear-gradient(rgba(240, 244, 248, 0.92), rgba(240, 244, 248, 0.92)), 
+                              url('https://images.unsplash.com/photo-1560969184-10fe8719e047?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 2px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .container { max-width: 800px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 32px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            margin-bottom: 32px;
+            border-top: 6px solid var(--primary);
+        }
+
+        .article-card h1 { 
+            margin-top: 0; 
+            font-size: 1.5rem; 
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .full-text {
+            font-size: 1.05rem;
+            color: #2d3748;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+
+        .q-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 24px;
+            margin-bottom: 20px;
+            border: 1px solid #cbd5e0;
+            transition: transform 0.2s ease;
+        }
+
+        .q-tag {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--accent);
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .q-text { font-weight: 700; font-size: 1.1rem; margin-bottom: 20px; display: block; }
+
+        .options { display: flex; gap: 12px; }
+        .btn-opt {
+            flex: 1;
+            padding: 14px;
+            border: 2px solid #e2e8f0;
+            background: var(--white);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .is-correct { background: #10b981 !important; color: white !important; border-color: #10b981 !important; }
+        .is-wrong { background: #ef4444 !important; color: white !important; border-color: #ef4444 !important; }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 12px;
+            background: var(--primary-light);
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+            color: var(--primary);
+            border-left: 4px solid var(--primary);
+        }
+
+        .audio-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-top: 2px solid var(--primary);
+            padding: 15px 20px 30px;
+            z-index: 1000;
+        }
+
+        audio { width: 100%; height: 35px; }
+
+        @media (max-width: 600px) {
+            .article-card { padding: 20px; }
+            .options { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Lesetraining: Berlin</div>
+</header>
+
+<div class="container">
+    <section class="article-card">
+        <h1>Mein Besuch in Berlin</h1>
+        <div class="full-text">Mittwoch, 16. Juni
+
+Es ist mein erster Besuch in Berlin, deshalb ist es wohl verständlich, dass ich ziemlich aufgeregt und neugierig bin. Ich bin gestern Abend angekommen und es war gar nicht so einfach, das Jugendhotel zu finden, von dem ich im Reiseführer gelesen hatte. Es liegt zwischen dem Hackeschen Markt und dem Alexanderplatz, ziemlich versteckt in der Rosenstraße. Das Jugendhotel ist übrigens sehr zu empfehlen: saubere Doppel- oder Einzelzimmer, vernünftige Preise, gutes Frühstück und vor allem sehr nette und interessante Gäste.
+
+Bevor ich gestern schlafen gegangen bin, habe ich mich noch mit zwei amerikanischen Studentinnen verabredet, die für heute eine Fahrradtour geplant hatten und mich gern mitnehmen wollten. Sie heißen Phibi und Ann und sind schon seit einer Woche hier.
+
+Beim Frühstück haben wir heute Morgen überlegt, wohin wir fahren wollten und was wir uns ansehen müssten. Ich wäre ja gern die Straße "Unter den Linden" entlang gefahren zum Brandenburger Tor und dann am liebsten gleich in den Reichstag in die gläserne Kuppel. "Oh nein", hat Phibi protestiert. "Bei diesem wunderbaren Wetter willst du in den Reichstag? Da musst du auch noch stundenlang Schlange stehen. Das kannst du irgendwann machen, wenn es regnet!"
+
+Sie wollten an der Spree entlang fahren bis zum Charlottenburger Schloss. Da könnte man ja vielleicht eine Tasse Kaffee trinken und dann sollte es weitergehen in den Grunewald und bis an den Wannsee. "Kennt ihr denn den Weg?", habe ich gefragt. "Wart ihr da schon mal?" Nein, das waren sie nicht, aber sie hätten eine Karte, sagten sie.
+
+Und dann sind wir losgefahren. Auf wunderschönen Fahrradwegen am Fluss entlang, vorbei an Straßencafés, kleinen Geschäften, grünen Parkbänken, auf denen alte Leute saßen. Es ging wunderbar schnell und leicht. Manchmal wäre ich gern stehen geblieben, um die Touristenschiffe anzusehen. Nach einer Stunde waren wir schon am Schloss Charlottenburg. Es wäre noch schneller gegangen, wenn wir bei einer der großen Straßen nicht einen Fehler gemacht hätten - wir sind da wohl in die falsche Richtung gefahren.
+
+In einem kleinen Café beim Schloss haben wir in der Sonne gesessen und Eistee getrunken. Danach wollten Phibi und Ann sofort weiterfahren, aber ich hatte keine Lust mehr. Der Park beim Schloss ist so schön mit Blumen und großen Bäumen und künstlichen Seen. Außerdem ist der Kudamm mit den eleganten Geschäften gar nicht weit weg. Ich wollte meinen ersten Tag in Berlin genießen, nicht nur Sport treiben. Ich war also im Schloss und im Park, ich habe einen Einkaufsbummel gemacht und später sogar noch eine Stadtrundfahrt mit dem Schiff.
+
+Es war ein wunderbarer Tag und ich muss sagen: In Berlin mit dem Fahrrad unterwegs sein, das geht prima! Ich werde morgen wieder mit dem Fahrrad fahren, auf der Straße "Unter den Linden".
+
+Für heute gute Nacht,
+Marianne</div>
+    </section>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 1</span>
+        <span class="q-text">Ein Freund hat Marianne ein paar Tipps gegeben, wo man in Berlin gut übernachten kann.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie hatte im Reiseführer vom Hotel gelesen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie hat im Reiseführer darüber gelesen, nicht von einem Freund.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 2</span>
+        <span class="q-text">Die Amerikanerinnen kennen die Stadt gut, weil sie in Berlin studieren.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie sind seit einer Woche als Touristen da.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie sind Studentinnen, aber nur für eine Woche als Touristen hier.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 3</span>
+        <span class="q-text">Wenn Touristen in den Reichstag gehen wollen, müssen sie oft längere Zeit warten.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Phibi sagt, man muss dort stundenlang Schlange stehen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das Warten an der Schlange wird explizit erwähnt.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 4</span>
+        <span class="q-text">Als Marianne und ihre Freundinnen am Schloss ankommen, sind sie sehr müde, weil die Fahrt so schwierig war.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Die Fahrt ging wunderbar schnell und leicht.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Der Text sagt, es ging schnell und leicht.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 5</span>
+        <span class="q-text">Marianne will nicht zum Wannsee fahren, weil das Wetter nicht mehr so gut ist.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie hatte einfach keine Lust mehr und wollte den Park genießen.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, true, 'Korrekt: Sie bleibt wegen der Schönheit des Parks und der Nähe zum Kudamm dort.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+
+    <div class="q-card">
+        <span class="q-tag">Aufgabe 6</span>
+        <span class="q-text">Marianne findet, dass ein Fahrrad in der Stadt sehr nützlich ist.</span>
+        <div class="options">
+            <button class="btn-opt" onclick="ans(this, true, 'Richtig: Sie sagt, mit dem Fahrrad unterwegs zu sein geht prima.')">Richtig</button>
+            <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie empfiehlt es am Ende ausdrücklich.')">Falsch</button>
+        </div>
+        <div class="explanation"></div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls preload="auto">
+        <source src="berlin.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+
+        buttons.forEach(b => {
+            b.disabled = true;
+            b.style.opacity = "0.6";
+        });
+        
+        el.style.opacity = "1";
+        if(isOk) { 
+            el.classList.add('is-correct'); 
+        } else { 
+            el.classList.add('is-wrong'); 
+            // Mark the correct one even if wrong was clicked
+            buttons.forEach(b => {
+                if(b !== el) b.classList.add('is-correct');
+            });
+        }
+
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
