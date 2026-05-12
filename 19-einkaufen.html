@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Lesetraining - Einkaufen im Alltag</title>
+    <style>
+        :root {
+            --primary: #008080; /* 提尔蓝 / 超市主题 */
+            --primary-light: #e0f2f1;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --bg: #f4f7f6;
+            --white: #ffffff;
+            --accent: #ff5722; /* 活力橙 / 优惠提醒 */
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(244, 247, 246, 0.94), rgba(244, 247, 246, 0.94)), 
+                              url('https://images.unsplash.com/photo-1542838132-92c53300491e?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.7;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+        }
+
+        .container { max-width: 850px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 35px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 32px;
+            border-left: 8px solid var(--primary);
+        }
+
+        .article-card h1 { 
+            margin-top: 0; 
+            font-size: 1.6rem; 
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .full-text {
+            font-size: 1.1rem;
+            color: #34495e;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .q-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .q-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .q-text { font-weight: 700; font-size: 0.95rem; margin-bottom: 15px; line-height: 1.4; }
+
+        .options { display: flex; gap: 8px; }
+        .btn-opt {
+            flex: 1;
+            padding: 12px;
+            border: 2px solid #f5f5f5;
+            background: var(--white);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .is-correct { background: #27ae60 !important; color: white !important; border-color: #27ae60 !important; }
+        .is-wrong { background: #e74c3c !important; color: white !important; border-color: #e74c3c !important; }
+        
+        .explanation {
+            margin-top: 10px;
+            padding: 10px;
+            background: var(--primary-light);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            display: none;
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+
+        .audio-bar {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e0e0e0;
+            padding: 15px 20px 35px;
+            z-index: 1000;
+            text-align: center;
+        }
+
+        audio { width: 100%; max-width: 700px; height: 40px; }
+
+        @media (max-width: 768px) {
+            .q-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 25px; }
+            .header-title { font-size: 0.9rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Lesetraining: Einkaufen</div>
+</header>
+
+<div class="container">
+    <section class="article-card">
+        <h1>Einkaufen im Alltag: online oder im Geschäft?</h1>
+        <div class="full-text">Sabine ist 34 Jahre alt und lebt in einer mittelgroßen Stadt. Sie arbeitet Vollzeit als Krankenschwester und hat oft wenig Zeit. Deshalb muss sie ihren Alltag gut organisieren. Auch beim Einkaufen überlegt sie genau, wie sie Zeit und Geld sparen kann. 
+
+Früher ging Sabine fast jeden Tag nach der Arbeit in den Supermarkt. Sie kaufte frische Lebensmittel wie Obst, Gemüse und Brot. Doch oft war sie müde und die langen Warteschlangen an der Kasse störten sie. Manchmal vergaß sie wichtige Produkte und musste am nächsten Tag noch einmal zurückgehen. 
+
+Seit einem Jahr kauft Sabine viele Produkte online ein. Besonders Getränke, Reis, Nudeln und Reinigungsmittel bestellt sie im Internet. Ein Lieferdienst bringt die Waren direkt zu ihr nach Hause. Das spart Zeit und ist sehr praktisch. Allerdings findet sie, dass frisches Obst und Fleisch im Geschäft besser aussehen. Deshalb geht sie einmal pro Woche auf den Wochenmarkt. 
+
+Sabine vergleicht immer die Preise. Sie nutzt Rabatt-Apps auf ihrem Smartphone und achtet auf Sonderangebote. Trotzdem gibt sie nicht nur wegen eines niedrigen Preises Geld aus. Qualität ist ihr wichtig. Sie kauft lieber regionale Produkte, auch wenn sie etwas teurer sind. 
+
+Laut einer aktuellen Studie kaufen immer mehr Menschen online ein. Besonders während der letzten Jahre ist der Online-Handel stark gewachsen. Experten sagen jedoch, dass kleine Geschäfte in der Stadt weiterhin wichtig bleiben. Sie bieten persönliche Beratung und stärken die lokale Wirtschaft. 
+
+Für Sabine ist die Mischung ideal: Online-Bestellungen für schwere oder haltbare Produkte und Einkäufe im Geschäft für frische Lebensmittel. So spart sie Zeit und bleibt flexibel.</div>
+    </section>
+
+    <div class="q-grid">
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 1</span>
+            <span class="q-text">Sabine arbeitet als Verkäuferin.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie arbeitet als Krankenschwester.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 2</span>
+            <span class="q-text">Früher ging sie fast jeden Tag in den Supermarkt.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das war früher ihre Gewohnheit.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 3</span>
+            <span class="q-text">Sie mochte die langen Warteschlangen an der Kasse.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Die Warteschlangen haben sie gestört.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 4</span>
+            <span class="q-text">Heute bestellt sie viele Produkte im Internet.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie bestellt nun seit einem Jahr online.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 5</span>
+            <span class="q-text">Ein Lieferdienst bringt die Waren zu ihr nach Hause.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das wird im Text bestätigt.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 6</span>
+            <span class="q-text">Sie kauft frisches Fleisch lieber online.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Frische Produkte kauft sie lieber im Geschäft.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 7</span>
+            <span class="q-text">Sabine vergleicht Preise und nutzt Rabatt-Apps.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie nutzt Apps, um Geld zu sparen.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 8</span>
+            <span class="q-text">Qualität spielt für sie keine Rolle.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Qualität ist ihr sehr wichtig.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 9</span>
+            <span class="q-text">Laut Studie kaufen heute weniger Menschen online ein.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Immer mehr Menschen kaufen online ein.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 10</span>
+            <span class="q-text">Experten finden kleine Geschäfte weiterhin wichtig.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Experten betonen deren Bedeutung.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 11</span>
+            <span class="q-text">Sabine kauft nur noch online ein.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie kombiniert Online- und Geschäftseinkauf.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 12</span>
+            <span class="q-text">Für sie ist eine Kombination aus Online und Geschäft am besten.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das ist laut Text ihre ideale Lösung.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls preload="auto">
+        <source src="einkaufen.MP3" type="audio/mpeg">
+        <source src="einkaufen.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+        buttons.forEach(b => { b.disabled = true; b.style.opacity = "0.6"; });
+        el.style.opacity = "1";
+        if(isOk) { el.classList.add('is-correct'); } 
+        else { 
+            el.classList.add('is-wrong'); 
+            buttons.forEach(b => { if(b !== el) b.classList.add('is-correct'); });
+        }
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+</body>
+</html>
