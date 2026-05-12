@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Lesetraining - Buch lesen</title>
+    <style>
+        :root {
+            --primary: #006064; /* Petrol / Bibliotheks-Blau */
+            --primary-light: #e0f2f1;
+            --text-main: #263238;
+            --text-muted: #546e7a;
+            --bg: #f5f5f5;
+            --white: #ffffff;
+            --accent: #bf360c; /* Ziegelrot / Buchrücken-Akzent */
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Segoe UI', serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(245, 245, 245, 0.92), rgba(245, 245, 245, 0.92)), 
+                              url('https://images.unsplash.com/photo-1507842217343-583bb7270b66?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+        }
+
+        .container { max-width: 850px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 40px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            margin-bottom: 32px;
+            border-left: 8px solid var(--primary);
+        }
+
+        .article-card h1 { 
+            margin-top: 0; 
+            font-size: 1.8rem; 
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .full-text {
+            font-size: 1.15rem;
+            color: #263238;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .q-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid #cfd8dc;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .q-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .q-text { font-weight: 700; font-size: 1rem; margin-bottom: 15px; }
+
+        .options { display: flex; gap: 8px; }
+        .btn-opt {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #eceff1;
+            background: var(--white);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .is-correct { background: #2e7d32 !important; color: white !important; border-color: #2e7d32 !important; }
+        .is-wrong { background: #c62828 !important; color: white !important; border-color: #c62828 !important; }
+        
+        .explanation {
+            margin-top: 10px;
+            padding: 10px;
+            background: var(--primary-light);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            display: none;
+            color: var(--primary);
+            border-left: 3px solid var(--primary);
+        }
+
+        .audio-bar {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #cfd8dc;
+            padding: 15px 20px 35px;
+            z-index: 1000;
+        }
+
+        audio { width: 100%; height: 40px; }
+
+        @media (max-width: 768px) {
+            .q-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 25px; }
+            .header-title { font-size: 1rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Lesetraining: Buch lesen</div>
+</header>
+
+<div class="container">
+    <section class="article-card">
+        <h1>Ein Buch kann das Leben verändern</h1>
+        <div class="full-text">Anna ist 29 Jahre alt und arbeitet als Verkäuferin in einer kleinen Stadt. In ihrer Schulzeit hat sie nicht gern gelesen. Sie fand Bücher langweilig und zu kompliziert. Nach der Arbeit schaute sie lieber fern oder traf sich mit Freunden. Lesen war für sie keine wichtige Freizeitaktivität.
+
+Das änderte sich vor einem Jahr. Eine Kollegin schenkte ihr zum Geburtstag einen Roman. Zuerst legte Anna das Buch mehrere Wochen zur Seite. Eines Abends hatte sie jedoch keinen Internetzugang und begann aus Langeweile zu lesen. Schon nach wenigen Seiten war sie überrascht: Die Geschichte war spannend und leicht zu verstehen.
+
+Seit diesem Tag liest Anna regelmäßig. Jeden Abend nimmt sie sich mindestens 20 Minuten Zeit für ein Buch. Besonders gern liest sie Romane und Biografien. Manchmal leiht sie Bücher aus der Stadtbibliothek aus, manchmal kauft sie gebrauchte Bücher online.
+
+Anna hat gemerkt, dass sich durch das Lesen ihr Wortschatz verbessert hat. Außerdem kann sie sich besser konzentrieren und fühlt sich ruhiger. Lesen hilft ihr, den Stress des Alltags zu vergessen. Sie sagt, dass ein gutes Buch wie eine Reise in eine andere Welt ist.
+
+Laut einer aktuellen Studie lesen viele Erwachsene heute weniger Bücher als früher. Stattdessen verbringen sie viel Zeit am Smartphone oder vor dem Fernseher. Experten erklären jedoch, dass regelmäßiges Lesen das Gehirn trainiert und die Kreativität fördert. Besonders für Menschen, die eine Fremdsprache lernen, ist Lesen sehr wichtig. Anna empfiehlt ihren Freunden heute öfter, ein Buch in die Hand zu nehmen. Sie glaubt, dass jeder das richtige Buch finden kann. Man muss nur anfangen.</div>
+    </section>
+
+    <div class="q-grid">
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 1</span>
+            <span class="q-text">Anna hat in der Schule gern gelesen.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie fand Bücher damals langweilig.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 2</span>
+            <span class="q-text">Eine Kollegin hat ihr ein Buch geschenkt.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie bekam es zum Geburtstag.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 3</span>
+            <span class="q-text">Sie begann sofort am gleichen Tag mit dem Lesen.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie legte es erst mehrere Wochen zur Seite.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 4</span>
+            <span class="q-text">Das Buch war langweilig und schwer zu verstehen.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Es war spannend und leicht zu verstehen.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 5</span>
+            <span class="q-text">Heute liest Anna jeden Abend.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie liest mindestens 20 Minuten pro Abend.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 6</span>
+            <span class="q-text">Sie liest nur Bücher aus der Bibliothek.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie kauft auch gebrauchte Bücher online.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 7</span>
+            <span class="q-text">Durch das Lesen hat sich ihr Wortschatz verbessert.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das ist einer der Vorteile, die sie bemerkt hat.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 8</span>
+            <span class="q-text">Lesen hilft ihr gegen Stress.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Es hilft ihr, den Alltagsstress zu vergessen.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 9</span>
+            <span class="q-text">Laut Studie lesen Erwachsene heute mehr als früher.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Die Studie sagt, sie lesen heute weniger.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 10</span>
+            <span class="q-text">Experten sagen, dass Lesen das Gehirn trainiert.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Experten bestätigen diesen Trainingseffekt.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 11</span>
+            <span class="q-text">Lesen ist besonders für Fremdsprachenlerner hilfreich.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Der Text hebt dies besonders hervor.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 12</span>
+            <span class="q-text">Anna glaubt, dass Lesen Zeitverschwendung ist.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie findet es wichtig und empfiehlt es weiter.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls preload="auto">
+        <source src="buchlesen.MP3" type="audio/mpeg">
+        <source src="buchlesen.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+        buttons.forEach(b => { b.disabled = true; b.style.opacity = "0.6"; });
+        el.style.opacity = "1";
+        if(isOk) { el.classList.add('is-correct'); } 
+        else { 
+            el.classList.add('is-wrong'); 
+            buttons.forEach(b => { if(b !== el) b.classList.add('is-correct'); });
+        }
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+</body>
+</html>
