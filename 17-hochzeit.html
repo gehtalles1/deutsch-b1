@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Lesetraining - Eine besondere Hochzeit</title>
+    <style>
+        :root {
+            --primary: #8e44ad; /* 优雅紫 */
+            --primary-light: #f5eef8;
+            --text-main: #2c3e50;
+            --text-muted: #7f8c8d;
+            --bg: #fff5f8; /* 浪漫粉 */
+            --white: #ffffff;
+            --accent: #d4af37; /* 香槟金 */
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Segoe UI', 'Georgia', serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(255, 245, 248, 0.94), rgba(255, 245, 248, 0.94)), 
+                              url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.8;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--accent);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+            text-transform: none; /* 确保显示手动输入的大写 */
+        }
+
+        .container { max-width: 850px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .article-card {
+            background: var(--white);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 32px;
+            border: 1px solid #f2d7d5;
+        }
+
+        .article-card h1 { 
+            margin-top: 0; 
+            font-size: 1.8rem; 
+            color: var(--primary);
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        
+        .full-text {
+            font-size: 1.15rem;
+            color: #34495e;
+            text-align: justify;
+            white-space: pre-wrap;
+        }
+
+        /* 题目网格：电脑端2列 */
+        .q-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .q-card {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 18px;
+            border: 1px solid #ebedef;
+            transition: all 0.3s;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .q-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 8px;
+        }
+
+        .q-text { font-weight: 700; font-size: 1rem; margin-bottom: 15px; }
+
+        .options { display: flex; gap: 8px; }
+        .btn-opt {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #f2f3f4;
+            background: var(--white);
+            border-radius: 8px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .is-correct { background: #27ae60 !important; color: white !important; border-color: #27ae60 !important; }
+        .is-wrong { background: #e74c3c !important; color: white !important; border-color: #e74c3c !important; }
+        
+        .explanation {
+            margin-top: 10px;
+            padding: 10px;
+            background: var(--primary-light);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            display: none;
+            color: var(--primary);
+            border-left: 3px solid var(--accent);
+        }
+
+        .audio-bar {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #d4af37;
+            padding: 15px 20px 35px;
+            z-index: 1000;
+        }
+
+        audio { width: 100%; height: 40px; }
+
+        /* 手机端适配：变为1列 */
+        @media (max-width: 768px) {
+            .q-grid { grid-template-columns: 1fr; }
+            .article-card { padding: 25px; }
+            .header-title { font-size: 1rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Lesetraining: Hochzeit</div>
+</header>
+
+<div class="container">
+    <section class="article-card">
+        <h1>Eine besondere Hochzeit</h1>
+        <div class="full-text">Lena und David kennen sich seit fünf Jahren. Sie haben sich während ihres Studiums an der Universität kennengelernt. Am Anfang waren sie nur gute Freunde, aber nach einiger Zeit merkten sie, dass sie mehr füreinander empfinden. Nach drei Jahren Beziehung entschied sich David, Lena einen Heiratsantrag zu machen. Der Antrag war sehr romantisch. David organisierte ein kleines Abendessen in einem Restaurant, in dem sie ihr erstes Treffen hatten. Am Ende des Abends gab er Lena einen Ring und fragte sie, ob sie ihn heiraten möchte. Lena war sehr überrascht und glücklich. Natürlich sagte sie sofort: "Ja."
+
+Die Planung der Hochzeit begann einige Monate später. Lena und David wollten keine sehr große Feier, sondern eine kleine Hochzeit mit Familie und engen Freunden. Trotzdem gab es viel zu organisieren. Sie mussten eine passende Location finden, Einladungen verschicken und ein Menü auswählen. Lena träumte schon lange von einem weißen Hochzeitskleid. Nach mehreren Besuchen in verschiedenen Geschäften fand sie schließlich ein Kleid, das ihr perfekt gefiel. David kaufte sich einen eleganten Anzug. Beide waren sehr aufgeregt, als der Hochzeitstag näher kam.
+
+Die Hochzeit fand im Sommer statt, an einem sonnigen Samstag im Juni. Die Zeremonie wurde in einem kleinen Garten gefeiert. Danach gab es ein festliches Abendessen und Musik. Die Gäste tanzten bis spät in die Nacht und hatten viel Spaß. Für Lena und David war dieser tag einer der schönsten Momente ihres Lebens. Sie sagen, dass nicht die Größe der Feier wichtig ist, sondern die Menschen, mit denen man diesen besonderen Tag teilt.</div>
+    </section>
+
+    <div class="q-grid">
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 1</span>
+            <span class="q-text">Lena und David kennen sich seit zwei Jahren.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie kennen sich seit fünf Jahren.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 2</span>
+            <span class="q-text">Sie haben sich an der Universität kennengelernt.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Der Text bestätigt das Studium an der Uni.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 3</span>
+            <span class="q-text">Am Anfang waren sie sofort ein Paar.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Am Anfang waren sie nur gute Freunde.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 4</span>
+            <span class="q-text">David machte Lena einen Heiratsantrag im Restaurant.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Der Antrag fand im Restaurant statt.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 5</span>
+            <span class="q-text">Lena war traurig über den Antrag.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie war sehr glücklich.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 6</span>
+            <span class="q-text">Sie wollten eine sehr große Hochzeit mit vielen Gästen.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie wollten eine kleine Hochzeit.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 7</span>
+            <span class="q-text">Die Planung der Hochzeit war einfach und ohne Probleme.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Es gab viel zu organisieren.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 8</span>
+            <span class="q-text">Lena kaufte ein weißes Hochzeitskleid.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie fand ihr perfektes Kleid.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 9</span>
+            <span class="q-text">Die Hochzeit fand im Winter statt.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Die Hochzeit fand im Juni statt.')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 10</span>
+            <span class="q-text">Die Feier fand in einem Garten statt.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Die Zeremonie war im Garten.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 11</span>
+            <span class="q-text">Die Gäste tanzten und feierten lange.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Sie tanzten bis spät in die Nacht.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">Aufgabe 12</span>
+            <span class="q-text">Für Lena und David sind die Menschen wichtiger als eine große Feier.</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, 'Korrekt!')">Richtig</button>
+                <button class="btn-opt" onclick="ans(this, false, 'Falsch: Das ist das Fazit des Paares.')">Falsch</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls preload="auto">
+        <source src="hochzeit.MP3" type="audio/mpeg">
+        <source src="hochzeit.mp3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+        buttons.forEach(b => { b.disabled = true; b.style.opacity = "0.6"; });
+        el.style.opacity = "1";
+        if(isOk) { el.classList.add('is-correct'); } 
+        else { 
+            el.classList.add('is-wrong'); 
+            buttons.forEach(b => { if(b !== el) b.classList.add('is-correct'); });
+        }
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+</body>
+</html>
