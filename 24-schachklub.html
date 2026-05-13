@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Sprechen - Teil 1: Schachklub gründen</title>
+    <style>
+        :root {
+            --primary: #455a64; /* 深蓝灰 */
+            --primary-light: #eceff1;
+            --text-main: #263238;
+            --bg: #f5f7f9;
+            --white: #ffffff;
+            --accent: #ffa000;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(245, 247, 249, 0.96), rgba(245, 247, 249, 0.96)), 
+                              url('https://images.unsplash.com/photo-1529699211952-734e80c4d42b?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+        }
+
+        .container { max-width: 800px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .task-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-left: 8px solid var(--primary);
+        }
+
+        .task-card h2 { margin-top: 0; color: var(--primary); font-size: 1.3rem; }
+        .task-points { background: var(--primary-light); padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .task-points ul { margin: 5px 0; padding-left: 20px; }
+
+        .hint-card {
+            background: #fff3e0;
+            border: 1px solid #ffe0b2;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #e65100;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .solution-box { margin-top: 30px; }
+        .show-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        .dialogue-content {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .speaker-row { margin-bottom: 15px; display: flex; flex-direction: column; }
+        .speaker-name { font-weight: 900; color: var(--primary); margin-bottom: 4px; font-size: 0.85rem; text-transform: uppercase; }
+        .speaker-text { background: #f9f9f9; padding: 12px 16px; border-radius: 12px; border-left: 3px solid #cfd8dc; font-size: 1rem; }
+
+        .audio-bar {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e0e0e0;
+            padding: 15px 20px 35px;
+            z-index: 1000;
+            text-align: center;
+        }
+        audio { width: 100%; max-width: 600px; height: 40px; }
+
+        @media (max-width: 600px) {
+            .header-title { font-size: 0.95rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">Zurück</a>
+    <div class="header-title">B1 Sprechen: Schachklub</div>
+</header>
+
+<div class="container">
+    <section class="task-card">
+        <h2>Die Aufgabe</h2>
+        <p>Sie möchten gemeinsam einen Schachklub an Ihrer Schule gründen. Planen Sie die Vorgehensweise.</p>
+        <div class="task-points">
+            <strong>Planen Sie gemeinsam:</strong>
+            <ul>
+                <li>Zielgruppe: Wer darf mitmachen?</li>
+                <li>Werbung: Wie informieren wir die Leute?</li>
+                <li>Ort: Wo treffen wir uns?</li>
+                <li>Zeit: Wann finden die Treffen statt?</li>
+                <li>Unterricht und Turniere organisieren</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="hint-card">
+        <span>💡</span>
+        <span>Tipp: Hören Sie den Lösungsvorschlag mehrmals und sprechen Sie laut nach.</span>
+    </div>
+
+    <div class="solution-box">
+        <button class="show-btn" onclick="toggleSolution()">LÖSUNGSVORSCHLAG ANZEIGEN</button>
+        
+        <div id="solution" class="dialogue-content">
+            <h3 style="text-align: center; color: var(--primary); margin-bottom: 25px;">Dialog: Einen Schachklub gründen</h3>
+            
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Hey, stell dir vor, wir gründen einen Schachklub an unserer Schule. Ich finde, Schach ist ein super Spiel, um das Gehirn zu trainieren und gleichzeitig Spaß zu haben.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MANN:</span>
+                <div class="speaker-text">Das wäre echt cool. Ich bin total dabei. Aber wie bekommen wir genug Leute zusammen, die mitmachen wollen?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Gute Frage. Ich denke, wir sollten erst mal festlegen, wer überhaupt Mitglied werden kann. Nur erfahrene Spieler oder auch Anfänger?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MANN:</span>
+                <div class="speaker-text">Auf jeden Fall sollten auch Anfänger willkommen sein. Wir können ja Anfänger- und Fortgeschrittenengruppen einrichten. So fühlen sich alle gleich wohl.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Finde ich super. Dann müssen wir nur noch rausfinden, wie wir die Leute informieren. Vielleicht hängen wir Plakate im Schulgebäude auf oder erstellen einen Flyer, den wir in den Pausen verteilen.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MANN:</span>
+                <div class="speaker-text">Genau. Und vielleicht können wir auch noch die Schulzeitung oder den Newsletter dafür nutzen. Aber wo sollen wir uns treffen, um Schach zu spielen? In der Mensa oder vielleicht sogar in einem der Computerräume?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Die Mensa wäre vielleicht etwas laut. Ich finde einen ruhigen Raum in der Bibliothek besser geeignet. Da können wir uns konzentrieren.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MANN:</span>
+                <div class="speaker-text">Ja, das klingt gut. Aber wie wäre es, wenn wir uns einmal die Woche in der Mittagspause treffen? So haben alle Zeit, vorbeizukommen.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Eine super Idee. Und um das Ganze noch attraktiver zu machen, könnten wir ja auch Schachunterricht anbieten. Vielleicht können wir ältere Schüler oder sogar einen Lehrer als Trainer gewinnen.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MANN:</span>
+                <div class="speaker-text">Das wäre der absolute Hammer. Ich könnte mir vorstellen, dass viele Schüler Interesse hätten, Schach zu lernen. Aber wie finden wir einen Trainer?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Vielleicht können wir ja mal in der Lehrerkonferenz nachfragen, ob jemand Schach spielen kann. Oder wir fragen in Schachvereinen in der Umgebung nach.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MANN:</span>
+                <div class="speaker-text">Das ist ein guter Plan. Und wenn wir genug Mitglieder haben, könnten wir ja auch kleine Turniere veranstalten. Das wäre ein toller Anreiz für alle.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Absolut. Und vielleicht können wir ja auch mal einen Schachwettbewerb mit anderen Schulen organisieren. Das wäre doch mal was.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MANN:</span>
+                <div class="speaker-text">Also, zusammengefasst: Wir gründen einen Schachklub für Anfänger und Fortgeschrittene, informieren über Plakate, Flyer und Schulmedien, treffen uns einmal die Woche in der Bibliothek, bieten Schachunterricht an und organisieren Turniere. Klingt doch super, oder?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">FRAU:</span>
+                <div class="speaker-text">Definitiv. Dann legen wir doch einfach los und erstellen einen ersten Entwurf für einen Flyer. Ich bin schon ganz gespannt, wie unser Schachklub ankommt.</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls>
+        <source src="schachklub.MP3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function toggleSolution() {
+        const sol = document.getElementById('solution');
+        const btn = document.querySelector('.show-btn');
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+            btn.innerText = 'LÖSUNGSVORSCHLAG ANZEIGEN';
+        } else {
+            sol.style.display = 'block';
+            btn.innerText = 'LÖSUNGSVORSCHLAG AUSBLENDEN';
+        }
+    }
+</script>
+
+</body>
+</html>
