@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Sprechen - Teil 1: Gemeinsam etwas planen</title>
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #e8f5e9;
+            --text-main: #1b5e20;
+            --bg: #f1f8e9;
+            --white: #ffffff;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: 'Segoe UI', Roboto, sans-serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(241, 248, 233, 0.95), rgba(241, 248, 233, 0.95)), 
+                              url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 800;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+        }
+
+        .container { max-width: 800px; margin: 24px auto 140px; padding: 0 16px; }
+
+        .task-card {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            border-left: 8px solid var(--primary);
+        }
+
+        .task-card h2 { margin-top: 0; color: var(--primary); font-size: 1.3rem; }
+        .task-points { background: var(--primary-light); padding: 15px; border-radius: 10px; margin-top: 15px; }
+        .task-points ul { margin: 5px 0; padding-left: 20px; }
+
+        .hint-card {
+            background: #fff3e0;
+            border: 1px solid #ffe0b2;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #e65100;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .solution-box { margin-top: 30px; }
+        .show-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 800;
+            font-size: 1.1rem;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(46, 125, 50, 0.3);
+        }
+
+        .dialogue-content {
+            display: none;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            border: 1px solid #e0e0e0;
+        }
+
+        .speaker-row { margin-bottom: 15px; display: flex; flex-direction: column; }
+        .speaker-name { font-weight: 900; color: var(--primary); margin-bottom: 4px; font-size: 0.9rem; text-transform: uppercase; }
+        .speaker-text { background: #f9f9f9; padding: 12px 16px; border-radius: 12px; border-left: 3px solid #ddd; }
+
+        .audio-bar {
+            position: fixed;
+            bottom: 0; left: 0; width: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid #e0e0e0;
+            padding: 15px 20px 35px;
+            z-index: 1000;
+            text-align: center;
+        }
+        audio { width: 100%; max-width: 600px; height: 40px; }
+
+        @media (max-width: 600px) {
+            .header-title { font-size: 0.95rem; margin-right: 40px; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">Zurück</a>
+    <div class="header-title">B1 Sprechen: Teil 1</div>
+</header>
+
+<div class="container">
+    <section class="task-card">
+        <h2>Die Aufgabe</h2>
+        <p>Sie erwarten einen gemeinsamen Freund, der für ein Wochenende in Ihre Heimatstadt kommt. Planen Sie den Aufenthalt für ihn.</p>
+        <div class="task-points">
+            <strong>Planen Sie gemeinsam:</strong>
+            <ul>
+                <li>Was unternehmen? / Wann und wo treffen?</li>
+                <li>Verkehrsmittel? / Was besichtigen? / Wo essen?</li>
+            </ul>
+        </div>
+    </section>
+
+    <div class="hint-card">
+        <span>💡</span>
+        <span>Tipp: Hören Sie den Lösungsvorschlag mehrmals und sprechen Sie laut nach.</span>
+    </div>
+
+    <div class="solution-box">
+        <button class="show-btn" onclick="toggleSolution()">LÖSUNGSVORSCHLAG ANZEIGEN</button>
+        
+        <div id="solution" class="dialogue-content">
+            <h3 style="text-align: center; color: var(--primary); margin-bottom: 25px;">Beispiel-Gespräch</h3>
+            
+            <div class="speaker-row">
+                <span class="speaker-name">MARIO:</span>
+                <div class="speaker-text">Also Sandra, unser Freund Lukas kommt ja am Freitagabend in unsere Stadt. Hast du schon eine Idee, was wir mit ihm machen können?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">SANDRA:</span>
+                <div class="speaker-text">Ja, ich habe darüber nachgedacht. Er war noch nie hier. Deshalb sollten wir ihm zuerst das Zentrum zeigen.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MARIO:</span>
+                <div class="speaker-text">Gute Idee! Dann treffen wir uns am Samstagmorgen. Wo wollen wir uns treffen?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">SANDRA:</span>
+                <div class="speaker-text">Am besten vor dem Hauptbahnhof um 10 Uhr, dann ist es noch nicht so voll.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MARIO:</span>
+                <div class="speaker-text">Einverstanden. Und wie fahren wir weiter? Mit dem Bus oder mit der Straßenbahn?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">SANDRA:</span>
+                <div class="speaker-text">Ich würde die Straßenbahn nehmen. Sie ist schnell und wir kommen direkt in die Innenstadt.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MARIO:</span>
+                <div class="speaker-text">Stimmt. Und dort könnten wir zuerst den Marktplatz und das Rathaus besuchen.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">SANDRA:</span>
+                <div class="speaker-text">Ja. Und danach vielleicht das Stadtmuseum? Lukas interessiert sich ja sehr für Geschichte.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MARIO:</span>
+                <div class="speaker-text">Genau. Zum Mittagessen könnten wir in ein kleines Café gehen. Ich kenne eins, das nicht teuer ist.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">SANDRA:</span>
+                <div class="speaker-text">Das klingt gut. Und was machen wir am Abend?</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MARIO:</span>
+                <div class="speaker-text">Vielleicht gehen wir in eine Bar am Fluss? Dort ist die Atmosphäre sehr angenehm.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">SANDRA:</span>
+                <div class="speaker-text">Ja, das finde ich schön. Wir können dort sitzen und reden.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">MARIO:</span>
+                <div class="speaker-text">Prima, dann schreibe ich Lukas gleich und sage ihm Bescheid.</div>
+            </div>
+
+            <div class="speaker-row">
+                <span class="speaker-name">SANDRA:</span>
+                <div class="speaker-text">Super, ich freue mich schon auf das Wochenende!</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="audio-bar">
+    <audio controls>
+        <source src="treffen.MP3" type="audio/mpeg">
+    </audio>
+</div>
+
+<script>
+    function toggleSolution() {
+        const sol = document.getElementById('solution');
+        const btn = document.querySelector('.show-btn');
+        if (sol.style.display === 'block') {
+            sol.style.display = 'none';
+            btn.innerText = 'LÖSUNGSVORSCHLAG ANZEIGEN';
+        } else {
+            sol.style.display = 'block';
+            btn.innerText = 'LÖSUNGSVORSCHLAG AUSBLENDEN';
+        }
+    }
+</script>
+
+</body>
+</html>
