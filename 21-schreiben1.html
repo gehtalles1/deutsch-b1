@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="de" translate="no">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="google" content="notranslate">
+    <title>B1 Schreiben - Übung</title>
+    <style>
+        :root {
+            --primary: #5d4037; /* 墨棕色 */
+            --primary-light: #efebe9;
+            --text-main: #2b1d0e;
+            --bg: #fffbf0; /* 优化后的护眼羊皮纸色 */
+            --white: #ffffff;
+            --accent: #d97706; /* 深琥珀金 */
+            --correct: #15803d;
+            --wrong: #b91c1c;
+        }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Palatino", serif;
+            background-color: var(--bg);
+            background-image: linear-gradient(rgba(255, 251, 240, 0.88), rgba(255, 251, 240, 0.88)), 
+                              url('https://images.unsplash.com/photo-1455390582262-044cdead277a?q=80&w=1000');
+            background-size: cover;
+            background-attachment: fixed;
+            color: var(--text-main);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        header {
+            background: var(--white);
+            height: 64px;
+            display: flex;
+            align-items: center;
+            padding: 0 20px;
+            border-bottom: 3px solid var(--primary);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .back-btn {
+            text-decoration: none;
+            color: var(--text-main);
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 0.95rem;
+        }
+
+        .header-title {
+            flex: 1;
+            text-align: center;
+            font-weight: 900;
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-right: 60px;
+            letter-spacing: 0.5px;
+        }
+
+        .container { max-width: 900px; margin: 24px auto 60px; padding: 0 16px; }
+
+        .q-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .q-card {
+            background: var(--white);
+            border-radius: 16px;
+            padding: 24px;
+            box-shadow: 0 4px 12px rgba(93, 64, 55, 0.08);
+            border: 1px solid #d7ccc8;
+            transition: all 0.2s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .q-tag {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: var(--accent);
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .q-text { 
+            font-weight: 700; 
+            font-size: 1.05rem; 
+            margin-bottom: 20px; 
+            color: var(--primary); 
+            min-height: 2.5em;
+            line-height: 1.4;
+        }
+
+        .options { display: flex; flex-direction: column; gap: 10px; }
+        
+        .btn-opt {
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid #ece2d0;
+            background: #fdfdfd;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+            font-size: 0.95rem;
+            transition: all 0.15s;
+            color: #4a3728;
+        }
+
+        .btn-opt:active { transform: scale(0.98); }
+
+        .is-correct { background: var(--correct) !important; color: white !important; border-color: var(--correct) !important; }
+        .is-wrong { background: var(--wrong) !important; color: white !important; border-color: var(--wrong) !important; }
+        
+        .explanation {
+            margin-top: 15px;
+            padding: 14px;
+            background: #fff9db;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            display: none;
+            color: #78350f;
+            border-left: 4px solid var(--accent);
+            line-height: 1.5;
+        }
+
+        @media (max-width: 768px) {
+            .q-grid { grid-template-columns: 1fr; }
+            .header-title { font-size: 1rem; margin-right: 40px; }
+            .q-text { min-height: auto; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="main.html" class="back-btn">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+        Zurück
+    </a>
+    <div class="header-title">B1 Schreiben: Übung</div>
+</header>
+
+<div class="container">
+    <div class="q-grid">
+        <div class="q-card">
+            <span class="q-tag">1. Formelle Korrespondenz</span>
+            <span class="q-text">Wie lautet die korrekte Anrede in einem formellen Brief (Empfänger unbekannt)?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>这是德语公文写作中最标准的正式通称，适用于不知道具体收件人姓名的情况。')">Sehr geehrte Damen und Herren,</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>此开头过于随意，通常仅用于同事或熟人之间的非正式通知。')">Hallo zusammen,</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>这种表达带有亲昵感，在正式信函中显得极不礼貌。')">Liebe Freunde,</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">2. Meinung im Forum</span>
+            <span class="q-text">Welche Wendung ist ideal, um im B1-Forum seine eigene Ansicht zu präsentieren?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>这是B1级写作中表达观点的“高分句式”，能准确引导陈述内容。')">Ich bin der Ansicht, dass...</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>这只是一个反问句，不能起到明确陈述自己观点的作用。')">Was meinst du dazu?</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>Weil引导的是原因从句，不能作为独立的观点开头。')">Weil ich denke...</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">3. Logische Konnektoren</span>
+            <span class="q-text">„Ich habe die Prüfung bestanden, ___ ich wenig gelernt habe.“</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>deshalb表示因果关系（因此），与此处“没学”和“考过”的逻辑相反。')">deshalb</button>
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>obwohl引导让步从句（尽管），完美表达了意料之外的转折逻辑。')">obwohl</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>trotzdem是副词连词，通常位于句首或第二位，不能在此处连接从句。')">trotzdem</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">4. Formelle Entschuldigung</span>
+            <span class="q-text">Wie beendet man eine formelle E-Mail an eine Behörde (Amt)?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>仅适用于亲密的朋友或家人。')">Alles Liebe</button>
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>这是与政府机构、保险公司或银行沟通时的标准职场礼貌结语。')">Ich hoffe auf Ihr Verständnis.</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>过于生活化，不适合严肃的申诉或请假场景。')">Schöne Grüße</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">5. Höfliche Vorschläge</span>
+            <span class="q-text">Wie schlägt man in einer E-Mail eine Alternative besonders höflich vor?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>使用了<b>虚拟二式 (Konjunktiv II)</b>，语气委婉，是德语礼貌表达的核心要求。')">Könnten wir vielleicht stattdessen...?</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>使用了müssen且是感叹句，语气生硬，听起来像命令。')">Wir machen das jetzt!</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>直接表达个人意愿（我不想），在协作沟通中显得很不专业。')">Ich will das nicht.</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">6. Satzverbindung (Trotzdem)</span>
+            <span class="q-text">„Es war sehr windig. ___ sind wir spazieren gegangen.“</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>因果不通。风大不是去散步的“原因”。')">Deshalb</button>
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>trotzdem作为连词副词，表示“尽管如此”，体现了与恶劣天气的对抗逻辑。')">Trotzdem</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>语法错误。obwohl必须引导从句，动词需放在句末。')">Obwohl</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">7. Formeller Abschied</span>
+            <span class="q-text">Welcher Gruß passt unter ein offizielles Bewerbungsschreiben?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>职场公文唯一指定结尾语。注意：Gruß形式上必须保持复数。')">Mit freundlichen Grüßen</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>属于口语化结语，不适合简历投递等正式场景。')">Bis bald!</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>中规中矩，但仍偏向于熟识的同事或业务伙伴。')">Viele Grüße</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">8. Doppelkonnektoren</span>
+            <span class="q-text">Welche Wendung verbindet zwei positive Argumente?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>这是递进关联词。不仅强调了第一点，还补充了更有力的第二点。')">Nicht nur ..., sondern auch ...</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>转折关联词。用于承认某事但进行反驳。')">Zwar ..., aber ...</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>选择关联词。用于二选一的情况。')">Entweder ... oder ...</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">9. Struktur im Forum</span>
+            <span class="q-text">Wie leitet man das Fazit in einem Diskussionsbeitrag ein?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>优秀的写作结构必须有总结（Fazit），此句能清晰提醒阅卷人你正在总结。')">Zusammenfassend kann man sagen, dass...</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>这是开篇引导语，用于提出第一个论点。')">Zuerst möchte ich sagen...</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>这是信函开头，完全不适用于论坛投稿。')">Sehr geehrte Damen...</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">10. Erwartung ausdrücken</span>
+            <span class="q-text">Welche Präposition passt: „Ich freue mich ___ Ihre Antwort.“</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>freuen über 表示对“已发生”的事感到高兴。')">über</button>
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>freuen auf 表示对“将来发生”的事感到期待，符合求回信的语境。')">auf</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>语法错误，freuen不与an搭配表示期待。')">an</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">11. Kausalnebensatz</span>
+            <span class="q-text">Welches Wort passt: „Ich kann nicht kommen, ___ ich arbeiten muss.“</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>weil引导从句，要求变位动词(muss)必须放在句末。')">weil</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>denn要求正语序（动词在第二位），此处逻辑虽对但语法错。')">denn</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>deshalb通常放在句首引导结果。')">deshalb</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">12. Informeller Stil</span>
+            <span class="q-text">Welche Anrede ist perfekt für eine E-Mail an einen guten Freund?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>对好朋友称呼Herr + 姓氏会显得关系破裂或非常疏远。')">Sehr geehrter Thomas,</button>
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>最经典、温馨的非正式信函开头，体现了亲密关系。')">Lieber Thomas,</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>这是半正式表达，通常用于不太熟的邻居。')">Guten Tag Thomas,</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">13. Mangelnde Erfahrung</span>
+            <span class="q-text">Wie drückt man aus, dass man mit einem Thema keine Erfahrung hat?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>“bisher noch keine Erfahrungen”是B1级讨论中常用的客观陈述句。')">Ich habe bisher noch keine Erfahrungen damit gemacht.</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>句意相反，这表示经验非常丰富。')">Ich habe das schon oft gemacht.</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>sich auskennen 表示精通，与题意相反。')">Ich kenne mich super aus.</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+
+        <div class="q-card">
+            <span class="q-tag">14. Schreibanlass</span>
+            <span class="q-text">Welche Verbindung leitet den Zweck der E-Mail ein?</span>
+            <div class="options">
+                <button class="btn-opt" onclick="ans(this, true, '<b>解析：</b>“我给你写信是因为...”，这是交代写信动机（Grund）的万能公式。')">weil</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>als通常指过去的时间点，不能用于解释动机。')">als</button>
+                <button class="btn-opt" onclick="ans(this, false, '<b>解析：</b>ob表示“是否”，通常引导间接疑问句，此处逻辑不通。')">ob</button>
+            </div>
+            <div class="explanation"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function ans(el, isOk, txt) {
+        const wrap = el.closest('.q-card');
+        const exp = wrap.querySelector('.explanation');
+        const buttons = wrap.querySelectorAll('.btn-opt');
+
+        // 禁用所有按钮
+        buttons.forEach(b => {
+            b.disabled = true;
+            b.style.opacity = "0.7";
+        });
+        
+        // 突出显示当前点击的按钮
+        el.style.opacity = "1";
+
+        if(isOk) { 
+            el.classList.add('is-correct'); 
+        } else { 
+            el.classList.add('is-wrong'); 
+            // 自动把正确答案标出来，方便学生对比
+            buttons.forEach(b => {
+                // 简单的逻辑判断：如果按钮绑定的ans函数第二个参数是true，就是正确答案
+                if(b.getAttribute('onclick').includes('true')) {
+                    b.classList.add('is-correct');
+                    b.style.opacity = "1";
+                }
+            });
+        }
+
+        // 显示解析
+        exp.innerHTML = txt;
+        exp.style.display = 'block';
+    }
+</script>
+
+</body>
+</html>
